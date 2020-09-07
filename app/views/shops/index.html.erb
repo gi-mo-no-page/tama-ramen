@@ -1,0 +1,13 @@
+<p>TOPページ</p>
+
+<% if user_signed_in?  %>
+<p>ログインしてるよ</p>
+<%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'btn'%>
+<% else %>
+<p>ログインしてないよ</p>
+<%= link_to  "ログイン", new_user_session_path %>
+<% end %>
+
+<% if user_signed_in?  %>
+<%= current_user.nickname %>
+<% end %>
