@@ -21,10 +21,10 @@
   <%= f.search_field :name_cont, placeholder:"お店の名前" %>
   <br>
   <%= f.label :genre_eq, 'ジャンル' %>
-  <%= f.collection_select :genre_eq, @shop_genre, :genre, :genre,  include_blank: '指定なし' %>
+  <%= f.collection_select :genre_eq, @shop_genre, :genre, :genre,  include_blank: 'ジャンル' %>
   <br>
-  <%= f.label :area_eq, '地域' %>
-  <%= f.collection_select :area_eq, @shop_area, :area, :area,  include_blank: '指定なし' %>
+  <%= f.label :area_eq, 'エリア' %>
+  <%= f.collection_select :area_eq, @shop_area, :area, :area,  include_blank: 'エリア' %>
  <br>
   <%= f.submit '検索' %>
 <% end %>
