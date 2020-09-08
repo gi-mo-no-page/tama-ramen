@@ -1,7 +1,9 @@
 class ShopsController < ApplicationController
+  before_action :search_shop, only: [:index, :search]
 
   def index
     @shops = Shop.all
+    set_shop_column
   end
 
   def new
@@ -21,11 +23,21 @@ class ShopsController < ApplicationController
   end
 
   def search
-    @shops = Shop.search(params[:keyword])
+    @results = @p.result
+    #@shops = Shop.search(params[:keyword])
   end
 
   private
   def shop_params
     params.require(:shop).permit(:name, :text, :genre, :area)
+  end
+
+  def search_shop
+    @p = Shop.ransack(params[:q])
+  end
+
+  def set_shop_column
+    @shop_genre = Shop.select("genre").distinct 
+    @shop_area = Shop.select("area").distinct 
   end
 end

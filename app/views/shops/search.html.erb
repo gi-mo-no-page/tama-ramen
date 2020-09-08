@@ -1,32 +1,19 @@
-<ul class='#'>
-<% if @shops.length == 0 %>
-  <div class="#">
-    <h1>— 該当する商品が見つかりません —</h1>
-  </div>
-<% else %>
-   <% @shops.each do |shop|%>
-      <li class='#'>
-        <%#= link_to item_path(item.id) do %>
-        <div class='#'>
-          <%#= image_tag item.image, class: "item-img" %>
-        </div>
-        <div class='#'>
-          <h3 class='#'>
-            <%= shop.name %>
-          </h3>
-          <h3 class='#'>
-            <%= shop.text %>
-          </h3>
-          <h3 class='#'>
-            <%= shop.genre %>
-          </h3>
-          <h3 class='#'>
-            <%= shop.area %>
-          </h3>
-          
-        </div>
-      <% end %>
-     </li>
+<h1>
+  検索結果
+</h1>
+<% if @results.length !=0 %>
+  <% @results.each do |result| %>
+    <td>
+    <br>
+    <li>
+      <%= result.name %>
+      <%= result.text %>
+      <%= result.genre %>
+      <%= result.area %>
+    </li>
   <% end %>
- </ul>
-   
+<% else %>
+  該当する商品はありません
+<% end %>
+<br>
+<%= link_to 'トップページへ戻る', root_path %>
