@@ -12,3 +12,23 @@
 <%= current_user.nickname %>
 <% end %>
 
+  <div class='#'>
+    <%#= link_to image_tag("", class:"furima-icon"), "/" %>
+    <%= form_with(url: search_shops_path, local: true, method: :get, class: "#") do |form| %>
+    <%= form.text_field :keyword, placeholder: "キーワードから探す", class: "#" %>
+    <button class="#">
+      <%#= image_tag "search.png", class:"search-icon" %>
+    </button>
+    <% end %>
+  </div>
+
+  <% if @shops.length != 0 %>
+    <% @shops.each do |shop| %>
+      <%= shop.name %>
+      <%= shop.text %>
+      <%= shop.genre %>
+      <%= shop.area %>
+    <% end %>
+  <% end %>
+
+  <%= link_to  "お店の登録", new_shop_path %>
