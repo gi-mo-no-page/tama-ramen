@@ -1,0 +1,32 @@
+<ul class='#'>
+<% if @shops.length == 0 %>
+  <div class="#">
+    <h1>— 該当する商品が見つかりません —</h1>
+  </div>
+<% else %>
+   <% @shops.each do |shop|%>
+      <li class='#'>
+        <%#= link_to item_path(item.id) do %>
+        <div class='#'>
+          <%#= image_tag item.image, class: "item-img" %>
+        </div>
+        <div class='#'>
+          <h3 class='#'>
+            <%= shop.name %>
+          </h3>
+          <h3 class='#'>
+            <%= shop.text %>
+          </h3>
+          <h3 class='#'>
+            <%= shop.genre %>
+          </h3>
+          <h3 class='#'>
+            <%= shop.area %>
+          </h3>
+          
+        </div>
+      <% end %>
+     </li>
+  <% end %>
+ </ul>
+   
