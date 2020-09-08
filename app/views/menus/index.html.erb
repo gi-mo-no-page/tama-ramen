@@ -1,0 +1,10 @@
+  <h3>メニューです</h3>
+  
+ <% if @menus.length != 0 %>
+    <% @menus.each do |menu| %>
+      <h5><%= menu.name %></h5>
+      <h5><%= menu.price %></h5>
+    <% end %>
+  <% end %> 
+
+  <%= link_to  "もどる", shop_path(@menu) %>

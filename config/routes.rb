@@ -6,7 +6,9 @@ Rails.application.routes.draw do
   end
 
   resources :users, only: [:show, :edit, :update]
-  resources :shops do
+  resources :shops, shallow: true do
+    resources :menus, only: :index
+    resources :reviews, only: :index
     collection do
       get 'search'
     end

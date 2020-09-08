@@ -32,8 +32,8 @@
 
 | Column   | Type       | Options                        |
 | -------- | ---------- | ------------------------------ |
-| user_id  | references | null: false, foreign_key: true |
-| shop_id  | references | null: false, foreign_key: true |
+| user     | references | null: false, foreign_key: true |
+| shop     | references | null: false, foreign_key: true |
 ### Association
 - belongs_to: user
 - belongs_to: shop
@@ -45,8 +45,8 @@
 | title    | string     | null:false                     |
 | text     | text       | null:false                     |
 | rate     | float      | null:false                     |
-| user_id  | references | null: false, foreign_key: true |
-| shop_id  | references | null: false, foreign_key: true |
+| user     | references | null: false, foreign_key: true |
+| shop     | references | null: false, foreign_key: true |
 
 ### Association
 - belongs_to: shop
@@ -59,7 +59,7 @@
 | -------- | ---------- | ------------------------------ |
 | name     | string     | null:false                     |
 | price    | integer    | null:false                     |
-| shop_id  | references | null: false, foreign_key: true |
+| shop     | references | null: false, foreign_key: true |
 
 ### Association
 - belongs_to: shop
