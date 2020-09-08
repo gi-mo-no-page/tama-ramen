@@ -20,11 +20,11 @@ class ShopsController < ApplicationController
   end
 
   def show
+    @shop =Shop.find(params[:id])
   end
 
   def search
     @results = @p.result
-    #@shops = Shop.search(params[:keyword])
   end
 
   private
@@ -40,4 +40,6 @@ class ShopsController < ApplicationController
     @shop_genre = Shop.select("genre").distinct 
     @shop_area = Shop.select("area").distinct 
   end
+
+
 end
