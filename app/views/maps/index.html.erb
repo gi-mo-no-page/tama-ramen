@@ -29,9 +29,8 @@
 </script>
 
 <script async defer
-              src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyAdj84jO7l5YC7aJImsqlOr7JQ4n7zS7B0&callback=initMap">
+              src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap">
 </script>
-
 
 <style type="text/css">
   #map { height: 400px;

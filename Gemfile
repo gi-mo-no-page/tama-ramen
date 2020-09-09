@@ -59,3 +59,6 @@ gem 'ransack'
 gem "gretel"
 gem 'jquery-rails'
 gem 'geocoder'
+group :development, :test do 
+    gem 'dotenv-rails', groups: [:development, :test]
+end
