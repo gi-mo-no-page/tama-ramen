@@ -57,3 +57,4 @@ gem 'devise'
 gem 'pry-rails'
 gem 'ransack'
 gem "gretel"
+gem 'jquery-rails'
