@@ -1,0 +1,42 @@
+<%= form_with model: [@shop,@review], url: shop_reviews_path, local: true do |f| %>
+  <div class='field-label'>
+    <%= f.label :タイトル %>
+  </div>
+  <div class='field-input'>
+    <%= f.text_field :title, autofocus: true%>
+  </div>
+  <div class='field-label'>
+    <%= f.label :内容 %>
+  </div>
+  <div class='field-input'>
+    <%= f.text_area :text, autofocus: true%>
+  </div>
+
+  <div class="field" id="star">
+    <%= f.label :評価： %>
+    <%= f.hidden_field :rate, id: :review_star %>
+  </div>
+
+ <script>
+  window.onload = function(){ 
+    $('#star').raty({
+    size     : 36,
+    starOff: '<%= asset_path('star-off.png') %>',
+    starOn : '<%= asset_path('star-on.png') %>',
+    starHalf:'<%= asset_path('star-half.png') %>',
+    half: true,
+    halfShow: true,   
+    scoreName: 'review[rate]',
+          });
+   };
+  </script> 
+
+
+  <div class='actions'>
+    <%= f.submit "口コミする", class: ''%>
+  </div>
+
+<% end %>
+<%= link_to(root_path) do %>
+<i class="fas fa-home"></i>
+<% end %>
