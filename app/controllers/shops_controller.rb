@@ -29,7 +29,7 @@ class ShopsController < ApplicationController
 
   private
   def shop_params
-    params.require(:shop).permit(:name, :text, :genre, :area)
+    params.require(:shop).permit(:name, :text, :genre, :address)
   end
 
   def search_shop
@@ -38,7 +38,7 @@ class ShopsController < ApplicationController
 
   def set_shop_column
     @shop_genre = Shop.select("genre").distinct 
-    @shop_area = Shop.select("area").distinct 
+     
   end
 
 

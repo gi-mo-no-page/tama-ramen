@@ -1,9 +1,10 @@
 <h3><%= @shop.name %></h3>
 <h5><%= @shop.text %></h5>
 <h5><%= @shop.genre %></h5>
-<h5><%= @shop.area %></h5>
-<h5><%= @shop.reviews.average(:rate).floor(2) %></h5>
 
+<% if @shop.reviews.present? %>
+<h5><%= @shop.reviews.average(:rate).floor(2) %></h5>
+<% end %>
 <div id="star"></div><!--star-->
   <script>
   $('#star').raty({

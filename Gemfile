@@ -58,3 +58,4 @@ gem 'pry-rails'
 gem 'ransack'
 gem "gretel"
 gem 'jquery-rails'
+gem 'geocoder'
