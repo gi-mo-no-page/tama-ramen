@@ -6,7 +6,7 @@
     <td>
     <br>
     <li>
-      <%= result.name %>
+      <%= link_to result.name, shop_path(result.id) %>
       <%= result.text %>
       <%= result.genre %>
       <%= result.area %>

@@ -1,8 +1,8 @@
 class ReviewsController < ApplicationController
 
   def index
-    @review = Review.find(params[:shop_id])
     @shop = Shop.find(params[:shop_id])
+    @reviews = @shop.reviews.includes(:user)
   end
 
   def new
