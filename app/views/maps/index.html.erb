@@ -1,0 +1,40 @@
+<h1>Map</h1>
+
+<script type="text/javascript">
+  function initMap() {
+
+    let point ={lat: <%= @shop.latitude %>, lng: <%= @shop.longitude %>};
+    let map = new google.maps.Map(document.getElementById('map'), {
+              zoom: 15, 
+              center: point
+              });
+    let transitLayer = new google.maps.TransitLayer();
+    transitLayer.setMap(map);
+
+    let contentString = '住所：<%= @shop.address %>';
+    let infowindow = new google.maps.InfoWindow({
+      content: contentString
+    });
+
+    let marker = new google.maps.Marker({
+                  position:point,
+                  map: map,
+                  title: contentString
+                 });
+
+     marker.addListener('click', function() {
+       infowindow.open(map, marker);
+     });
+  }
+</script>
+
+<script async defer
+              src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap">
+</script>
+
+<style type="text/css">
+  #map { height: 400px;
+         width: 70%;}
+</style>
+
+<div id="map"></div>

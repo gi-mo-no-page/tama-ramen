@@ -23,9 +23,6 @@
   <%= f.label :genre_eq, 'ジャンル' %>
   <%= f.collection_select :genre_eq, @shop_genre, :genre, :genre,  include_blank: 'ジャンル' %>
   <br>
-  <%= f.label :area_eq, 'エリア' %>
-  <%= f.collection_select :area_eq, @shop_area, :area, :area,  include_blank: 'エリア' %>
- <br>
   <%= f.submit '検索' %>
 <% end %>
 
@@ -36,7 +33,6 @@
       <%= link_to shop.name, shop_path(shop.id) %>
       <h5><%= shop.text %></h5>
       <h5><%= shop.genre %></h5>
-      <h5><%= shop.area %></h5>
     <% end %>
   <% end %>
 
