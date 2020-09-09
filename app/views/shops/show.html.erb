@@ -2,6 +2,19 @@
 <h5><%= @shop.text %></h5>
 <h5><%= @shop.genre %></h5>
 <h5><%= @shop.area %></h5>
+<h5><%= @shop.reviews.average(:rate).floor(2) %></h5>
+
+<div id="star"></div><!--star-->
+  <script>
+  $('#star').raty({
+    size: 36,
+    starOff:  '<%= asset_path('star-off.png') %>',
+    starOn : '<%= asset_path('star-on.png') %>',
+    starHalf: '<%= asset_path('star-half.png') %>',
+    readOnly: true,
+    score: <%= @shop.reviews.average(:rate) %>,
+  });
+  </script> 
 
 <%= link_to  "メニュー", shop_menus_path(@shop) %>
 <%= link_to  "口コミ", shop_reviews_path(@shop) %>
