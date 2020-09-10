@@ -5,11 +5,10 @@ Rails.application.routes.draw do
     post 'users/guest_sign_in', to: 'users/sessions#new_guest'
   end
 
-  resources :users, only: [:show, :edit, :update], shallow: true do
-    resources :goods, only: :index
-    resources :wents, only: :index
-  end
+  resources :users, only: [:show, :edit, :update]
   resources :shops, shallow: true do
+    resources :goods
+    resources :wents
     resources :reviews
     resources :maps, only: :index
     resources :menus, only: :index

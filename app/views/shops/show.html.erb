@@ -2,10 +2,22 @@
 <h3><%= @shop.name %></h3>
 <h5><%= @shop.text %></h5>
 <h5><%= @shop.genre %></h5>
+<% if Good.find_by(user_id: current_user.id, shop_id: @shop.id) %>
+    <%= link_to(good_path(@shop.id),method: :delete) do %>
+    <i class="far fa-laugh-beam">行った</i>
+    <% end %>
+<% else %>
+  <%= link_to(shop_goods_path(@shop.id),method: :post) do %>
+    <i class="far fa-meh">行ってない</i>
+  <% end %>
+<% end %>
+
+
 
 <% if @shop.reviews.present? %>
 <h5><%= @shop.reviews.average(:rate).floor(2) %></h5>
 <% end %>
+
 <div id="star"></div><!--star-->
   <script>
   $('#star').raty({
