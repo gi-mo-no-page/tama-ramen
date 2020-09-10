@@ -15,10 +15,12 @@
 <% end %>
 
 <div>
-  <%= link_to  "登録したお店", user_goods_path(@user) %>
+  <%= link_to  "お気に入り店", shop_goods_path(@user) %>
+  <%= @goods.count %>
 <div>
 <div>
-  <%= link_to  "行った店", user_wents_path(@user) %>
+  <%= link_to  "行った店", shop_wents_path(@user) %>
+  <%= @wents.count %>
 <div>
 
 <%= link_to "編集", edit_user_path(current_user.id) %>

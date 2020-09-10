@@ -3,6 +3,8 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @reviews = @user.reviews.includes(:shop)
+    @goods = @user.goods.includes(:shop)
+    @wents = @user.wents.includes(:shop)
   end
 
   def edit

@@ -1,5 +1,7 @@
 class WentsController < ApplicationController
-  def index 
+  def index
+    @user = current_user
+    @wents = @user.wents.includes(:shop)
   end
 
   def create

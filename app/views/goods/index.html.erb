@@ -1,1 +1,10 @@
 <h3>お気に入り</h3>
+
+  <% if @goods.length != 0 %>
+    <% @goods.each do |good| %>
+      <%= link_to good.shop.name, shop_path(good.shop.id) %>
+      <%= image_tag good.shop.image.variant(resize:'150x150'), class: '#' if good.shop.image.attached? %>
+      <h5><%= good.shop.text %></h5>
+      <h5><%= good.shop.genre %></h5>
+    <% end %>
+  <% end %>

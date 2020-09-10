@@ -1,6 +1,8 @@
 class GoodsController < ApplicationController
 
-  def index 
+  def index
+    @user = current_user
+    @goods = @user.goods.includes(:shop)
   end
 
   def create
