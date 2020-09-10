@@ -2,31 +2,30 @@
 <h3><%= @shop.name %></h3>
 <h5><%= @shop.text %></h5>
 <h5><%= @shop.genre %></h5>
-<% if Good.find_by(user_id: current_user.id, shop_id: @shop.id) %>
-    <%= link_to(good_path(@shop.id),method: :delete) do %>
-    <i class="far fa-laugh-beam">お気に入り</i>
+
+<% if user_signed_in? %>
+  <% if Good.find_by(user_id: current_user.id, shop_id: @shop.id) %>
+      <%= link_to(good_path(@shop.id),method: :delete) do %>
+      <i class="far fa-laugh-beam">お気に入り</i>
+      <% end %>
+  <% else %>
+    <%= link_to(shop_goods_path(@shop.id),method: :post) do %>
+      <i class="far fa-meh">検討中</i>
     <% end %>
-<% else %>
-  <%= link_to(shop_goods_path(@shop.id),method: :post) do %>
-    <i class="far fa-meh">まだ</i>
   <% end %>
-<% end %>
 
-<% if Went.find_by(user_id: current_user.id, shop_id: @shop.id) %>
-    <%= link_to(went_path(@shop.id),method: :delete) do %>
-    <i class="far fa-laugh-beam">行った</i>
+  <% if Went.find_by(user_id: current_user.id, shop_id: @shop.id) %>
+      <%= link_to(went_path(@shop.id),method: :delete) do %>
+      <i class="far fa-laugh-beam">行った</i>
+      <% end %>
+  <% else %>
+    <%= link_to(shop_wents_path(@shop.id),method: :post) do %>
+      <i class="far fa-meh">行ってない</i>
     <% end %>
-<% else %>
-  <%= link_to(shop_wents_path(@shop.id),method: :post) do %>
-    <i class="far fa-meh">行ってない</i>
   <% end %>
+  <% else%>
+  <h6>※ログインしたらお店の管理や口コミができるよ※</h6>
 <% end %>
-
-
-
-
-
-
 
 
 <% if @shop.reviews.present? %>
