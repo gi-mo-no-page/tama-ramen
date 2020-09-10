@@ -29,7 +29,7 @@ class ShopsController < ApplicationController
 
   private
   def shop_params
-    params.require(:shop).permit(:name, :text, :genre, :address)
+    params.require(:shop).permit(:name, :text, :genre, :address, :image)
   end
 
   def search_shop

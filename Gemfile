@@ -62,3 +62,5 @@ gem 'geocoder'
 group :development, :test do 
     gem 'dotenv-rails', groups: [:development, :test]
 end
+gem 'mini_magick'
+gem 'image_processing', '~> 1.2'
