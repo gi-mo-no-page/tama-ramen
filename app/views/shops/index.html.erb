@@ -5,6 +5,7 @@
 <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: '#'%>
 <% else %>
 <p>ログインしてないよ</p>
+<%= link_to  "新規登録", new_user_registration_path %>
 <%= link_to  "ログイン", new_user_session_path %>
 <% end %>
 
@@ -32,7 +33,7 @@
   <% if @shops.length != 0 %>
     <% @shops.each do |shop| %>
       <%= link_to shop.name, shop_path(shop.id) %>
-      <%= image_tag shop.image, class: '#' if shop.image.attached? %>
+      <%= image_tag shop.image.variant(resize:'150x150'), class: '#' if shop.image.attached? %>
       <h5><%= shop.text %></h5>
       <h5><%= shop.genre %></h5>
     <% end %>

@@ -2,7 +2,27 @@
 <%= "#{current_user.nickname}さんのマイページ" %><br>
 <%= image_tag @user.avatar.variant(resize:'90x90'), class: '#' if @user.avatar.attached? %>
 
+<div>
+<% if @user.text.present? %>
 <%= @user.text %>
+<% end %>
+</div>
 
+<% if @reviews.present? %>
+<div>
+  口コミ数:<%= @reviews.count %>
+<div>
+<% end %>
+
+<div>
+  登録したお店
+<div>
+<div>
+  行った店
+<div>
 
 <%= link_to "編集", edit_user_path(current_user.id) %>
+
+<%= link_to(root_path) do %>
+<i class="fas fa-home"></i>
+<% end %>
