@@ -31,6 +31,7 @@
   <% if @shops.length != 0 %>
     <% @shops.each do |shop| %>
       <%= link_to shop.name, shop_path(shop.id) %>
+      <%= image_tag shop.image, class: '#' if shop.image.attached? %>
       <h5><%= shop.text %></h5>
       <h5><%= shop.genre %></h5>
     <% end %>

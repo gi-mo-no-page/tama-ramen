@@ -3,13 +3,10 @@
 </h1>
 <% if @results.length !=0 %>
   <% @results.each do |result| %>
-    <td>
-    <br>
-    <li>
+      <%= image_tag result.image, class: '#' if result.image.attached? %>
       <%= link_to result.name, shop_path(result.id) %>
       <%= result.text %>
       <%= result.genre %>
-    </li>
   <% end %>
 <% else %>
   該当する商品はありません
