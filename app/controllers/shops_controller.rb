@@ -3,6 +3,7 @@ class ShopsController < ApplicationController
 
   def index
     @shops = Shop.all
+    @user = current_user
     set_shop_column
   end
 

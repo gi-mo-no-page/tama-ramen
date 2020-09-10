@@ -2,14 +2,15 @@
 
 <% if user_signed_in?  %>
 <p>ログインしてるよ</p>
-<%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'btn'%>
+<%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: '#'%>
 <% else %>
 <p>ログインしてないよ</p>
 <%= link_to  "ログイン", new_user_session_path %>
 <% end %>
 
 <% if user_signed_in?  %>
-<%= current_user.nickname %>
+<%= image_tag @user.avatar.variant(resize:'90x90'), class: '#' if @user.avatar.attached? %>
+<%= link_to current_user.nickname, user_path(current_user.id) %>
 <% end %>
 
   

@@ -1,0 +1,5 @@
+<h2>マイページ</h2>
+<%= "#{current_user.nickname}さんのマイページ" %><br>
+<%= image_tag @user.avatar.variant(resize:'90x90'), class: '#' if @user.avatar.attached? %>
+
+<%= link_to "編集", edit_user_path(current_user.id) %>
