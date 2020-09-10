@@ -1,0 +1,11 @@
+<h3>行った店</h3>
+
+  <% if @wents.length != 0 %>
+    <% @wents.each do |went| %>
+      <%= link_to went.shop.name, shop_path(went.shop.id) %>
+      <%= image_tag went.shop.image.variant(resize:'150x150'), class: '#' if went.shop.image.attached? %>
+      <h5><%= went.shop.text %></h5>
+      <h5><%= went.shop.genre %></h5>
+    <% end %>
+  <% end %>
+

@@ -2,14 +2,16 @@
 
 <% if user_signed_in?  %>
 <p>ログインしてるよ</p>
-<%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'btn'%>
+<%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: '#'%>
 <% else %>
 <p>ログインしてないよ</p>
+<%= link_to  "新規登録", new_user_registration_path %>
 <%= link_to  "ログイン", new_user_session_path %>
 <% end %>
 
 <% if user_signed_in?  %>
-<%= current_user.nickname %>
+<%= image_tag @user.avatar.variant(resize:'90x90'), class: '#' if @user.avatar.attached? %>
+<%= link_to current_user.nickname, user_path(current_user.id) %>
 <% end %>
 
   
@@ -31,6 +33,7 @@
   <% if @shops.length != 0 %>
     <% @shops.each do |shop| %>
       <%= link_to shop.name, shop_path(shop.id) %>
+      <%= image_tag shop.image.variant(resize:'150x150'), class: '#' if shop.image.attached? %>
       <h5><%= shop.text %></h5>
       <h5><%= shop.genre %></h5>
     <% end %>

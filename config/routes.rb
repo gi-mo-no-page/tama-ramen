@@ -7,6 +7,8 @@ Rails.application.routes.draw do
 
   resources :users, only: [:show, :edit, :update]
   resources :shops, shallow: true do
+    resources :goods
+    resources :wents
     resources :reviews
     resources :maps, only: :index
     resources :menus, only: :index

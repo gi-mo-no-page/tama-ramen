@@ -3,6 +3,7 @@ class ShopsController < ApplicationController
 
   def index
     @shops = Shop.all
+    @user = current_user
     set_shop_column
   end
 
@@ -29,7 +30,7 @@ class ShopsController < ApplicationController
 
   private
   def shop_params
-    params.require(:shop).permit(:name, :text, :genre, :address)
+    params.require(:shop).permit(:name, :text, :genre, :address, :image)
   end
 
   def search_shop

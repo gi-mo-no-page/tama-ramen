@@ -1,0 +1,30 @@
+<h2>マイページ</h2>
+<%= "#{current_user.nickname}さんのマイページ" %><br>
+<%= image_tag @user.avatar.variant(resize:'90x90'), class: '#' if @user.avatar.attached? %>
+
+<div>
+<% if @user.text.present? %>
+<%= @user.text %>
+<% end %>
+</div>
+
+<% if @reviews.present? %>
+<div>
+  口コミ数:<%= @reviews.count %>
+<div>
+<% end %>
+
+<div>
+  <%= link_to  "お気に入り店", shop_goods_path(@user) %>
+  <%= @goods.count %>
+<div>
+<div>
+  <%= link_to  "行った店", shop_wents_path(@user) %>
+  <%= @wents.count %>
+<div>
+
+<%= link_to "編集", edit_user_path(current_user.id) %>
+
+<%= link_to(root_path) do %>
+<i class="fas fa-home"></i>
+<% end %>

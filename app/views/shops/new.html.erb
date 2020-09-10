@@ -1,4 +1,10 @@
 <%= form_with model: @shop, local: true do |f| %>
+<div class='field-label'>
+    <%= f.label :写真 %>
+  </div>
+  <div class='field-input'>
+    <%= f.file_field :image, id:"#" %>
+  </div>
   <div class='field-label'>
     <%= f.label :店名 %>
   </div>
