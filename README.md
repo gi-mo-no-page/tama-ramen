@@ -22,19 +22,22 @@
 ### Association
 - has_many:reviews
 - has_many:goods
+- has_many:wents
 
 
 ## shops
 
-| Column   | Type       | Options                       |
-| -------- | ---------- | ----------------------------- |
-| name     | string     | null:false                    |
-| text     | text       | null:false                    |
-| genre    | string     | null:false                    | 
-| area     | string     | null:false                    | 
+| Column    | Type       | Options                       |
+| --------- | ---------- | ----------------------------- |
+| name      | string     | null:false                    |
+| text      | text       | null:false                    |
+| address   | string     | null:false                    | 
+| latitude  | float      | null:false                    | 
+| longitude | float      | null:false                    | 
 
 ### Association
 - has_many:goods
+- has_many:wents
 - has_many:menus
 - has_many:reviews
 
@@ -48,6 +51,17 @@
 ### Association
 - belongs_to: user
 - belongs_to: shop
+
+## wents テーブル
+
+| Column   | Type       | Options                        |
+| -------- | ---------- | ------------------------------ |
+| user     | references | null: false, foreign_key: true |
+| shop     | references | null: false, foreign_key: true |
+### Association
+- belongs_to: user
+- belongs_to: shop
+
 
 ## reviews テーブル
 
