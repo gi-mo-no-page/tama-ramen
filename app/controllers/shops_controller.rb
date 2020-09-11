@@ -2,7 +2,7 @@ class ShopsController < ApplicationController
   before_action :search_shop, only: [:index, :search]
 
   def index
-    @shops = Shop.all.order(created_at: :desc).limit(5)
+    @shops = Shop.all.order(created_at: :desc).page(params[:page]).per(5)
     @user = current_user
     set_shop_column
     set_category_column
