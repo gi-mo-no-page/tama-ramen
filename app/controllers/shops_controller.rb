@@ -26,7 +26,7 @@ class ShopsController < ApplicationController
   end
 
   def search
-    @results = @p.result.includes(:category)
+    @results = @p.result.includes(:category).order(created_at: :desc).page(params[:page]).per(5)
   end
 
   private

@@ -32,6 +32,7 @@
   <%= f.submit '検索' %>
 <% end %>
 
+    <%= paginate(@shops) %>
 
 
   <% if @shops.length != 0 %>
@@ -43,5 +44,5 @@
 
     <% end %>
   <% end %>
-<%= paginate(@shops) %>
+    <%= paginate(@shops) %>
   <%= link_to  "お店の登録", new_shop_path %>

@@ -1,6 +1,8 @@
 <h1>
   検索結果
 </h1>
+    <%= paginate(@results) %>
+
 <% if @results.length !=0 %>
   <% @results.each do |result| %>
       <%= image_tag result.image.variant(resize:'300x300'), class: '#' if result.image.attached? %>
@@ -13,5 +15,6 @@
 <% end %>
 <br>
 
+    <%= paginate(@results) %>
 
 <%= link_to 'トップページへ戻る', root_path %>
