@@ -38,6 +38,15 @@ class ShopsController < ApplicationController
     end
   end
 
+  def destroy 
+    @shop =Shop.find(params[:id])
+    if @shop.destroy
+      redirect_to root_path
+    else
+      render :show
+    end
+  end
+
 
   def search
     @results = @p.result.includes(:category).order(created_at: :desc).page(params[:page]).per(5)
@@ -46,7 +55,7 @@ class ShopsController < ApplicationController
 
   private
   def shop_params
-    params.require(:shop).permit(:name, :text, :address, :image,:category_id)
+    params.require(:shop).permit(:name, :text, :address, :image,:category_id).merge(user_id: current_user.id)
   end
 
   def search_shop
