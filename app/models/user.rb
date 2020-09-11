@@ -6,6 +6,8 @@ class User < ApplicationRecord
          has_many :reviews
          has_many :goods
          has_many :wents
+         has_many :shops
+
          has_one_attached :avatar
 
          def self.guest

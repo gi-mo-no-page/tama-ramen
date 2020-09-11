@@ -23,6 +23,7 @@
 - has_many:reviews
 - has_many:goods
 - has_many:wents
+- has_many:shops
 
 
 ## shops
@@ -34,7 +35,8 @@
 | address   | string     | null:false                    | 
 | latitude  | float      | null:false                    | 
 | longitude | float      | null:false                    | 
-| category  | references | null: false, foreign_key: true |
+| category  | references | null: false,foreign_key: true |
+| user      | references | null: false, foreign_key: true|
 
 ### Association
 - has_many:goods
@@ -42,6 +44,7 @@
 - has_many:menus
 - has_many:reviews
 - belongs_to: category
+- belongs_to: user
 
 
 ## categories
