@@ -2,9 +2,10 @@ class ShopsController < ApplicationController
   before_action :search_shop, only: [:index, :search]
 
   def index
-    @shops = Shop.all
+    @shops = Shop.all.order(created_at: :desc).limit(5)
     @user = current_user
     set_shop_column
+    set_category_column
   end
 
   def new
@@ -25,21 +26,25 @@ class ShopsController < ApplicationController
   end
 
   def search
-    @results = @p.result
+    @results = @p.result.includes(:category)
   end
 
   private
   def shop_params
-    params.require(:shop).permit(:name, :text, :genre, :address, :image)
+    params.require(:shop).permit(:name, :text, :genre_id, :address, :image,:category_id)
   end
 
   def search_shop
     @p = Shop.ransack(params[:q])
   end
-
+ 
   def set_shop_column
     @shop_genre = Shop.select("genre").distinct 
-     
+    @shop_address = Shop.select("address").distinct 
+  end
+
+  def set_category_column
+    @category_name = Category.select("name").distinct
   end
 
 

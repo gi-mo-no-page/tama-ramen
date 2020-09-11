@@ -5,5 +5,6 @@ class Shop < ApplicationRecord
   has_many :wents
   has_one_attached :image
   geocoded_by :address
+  belongs_to :category
   after_validation :geocode, if: :address_changed?
 end

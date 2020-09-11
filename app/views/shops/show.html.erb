@@ -1,7 +1,7 @@
 <%= image_tag @shop.image.variant(resize:'300x300'), class: '#' if @shop.image.attached? %>
 <h3><%= @shop.name %></h3>
 <h5><%= @shop.text %></h5>
-<h5><%= @shop.genre %></h5>
+<h5><%= @shop.category.name %></h5>
 
 <% if user_signed_in? %>
   <% if Good.find_by(user_id: current_user.id, shop_id: @shop.id) %>

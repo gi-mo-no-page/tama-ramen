@@ -19,12 +19,16 @@
   お店の検索
 </h1>
 <%= search_form_for @p, url: search_shops_path do |f| %>
-  <%= f.label :name_cont, '名前' %>
+  <%= f.label :name_cont, 'お店の名前' %>
   <%= f.search_field :name_cont, placeholder:"お店の名前" %>
   <br>
-  <%= f.label :genre_eq, 'ジャンル' %>
-  <%= f.collection_select :genre_eq, @shop_genre, :genre, :genre,  include_blank: 'ジャンル' %>
+  <%= f.label :category_name_eq, 'カテゴリー：' %>
+    <%= f.collection_select :category_name_eq, @category_name, :name, :name, include_blank: '指定なし' %>
+    <br>
+    <%= f.label :address_cont, 'エリア' %>
+  <%= f.search_field :address_cont, placeholder:"例)多摩市" %>
   <br>
+
   <%= f.submit '検索' %>
 <% end %>
 
@@ -35,7 +39,8 @@
       <%= link_to shop.name, shop_path(shop.id) %>
       <%= image_tag shop.image.variant(resize:'150x150'), class: '#' if shop.image.attached? %>
       <h5><%= shop.text %></h5>
-      <h5><%= shop.genre %></h5>
+      <h5><%= shop.category.name %></h5>
+
     <% end %>
   <% end %>
 

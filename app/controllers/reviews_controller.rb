@@ -29,9 +29,12 @@ class ReviewsController < ApplicationController
   def destroy
   end
 
+  
   private
   def review_params
     params.require(:review).permit(:title, :text, :rate).merge(user_id: current_user.id, shop_id: params[:shop_id])
   end
+
+
 
 end

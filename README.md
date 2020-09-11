@@ -34,12 +34,24 @@
 | address   | string     | null:false                    | 
 | latitude  | float      | null:false                    | 
 | longitude | float      | null:false                    | 
+| category  | references | null: false, foreign_key: true |
 
 ### Association
 - has_many:goods
 - has_many:wents
 - has_many:menus
 - has_many:reviews
+- belongs_to: category
+
+
+## categories
+
+| Column    | Type       | Options                       |
+| --------- | ---------- | ----------------------------- |
+| name      | string     | null:false                    |
+
+### Association
+- has_many:shops
 
 
 ## goods テーブル
@@ -51,6 +63,7 @@
 ### Association
 - belongs_to: user
 - belongs_to: shop
+
 
 ## wents テーブル
 
