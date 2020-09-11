@@ -2,14 +2,14 @@ crumb :root do
   link "Home", root_path
 end
 
-crumb :seach do
-  link "全てのお店", search_shops_path
+crumb :shops do
+  link "検索結果", search_shops_path
   parent :root
 end
 
-crumb :shops do
-  link @shop.name, shop_path(@shop)
-  parent :search
+crumb :users do 
+  link "マイページ", user_path(users)
+  parent :root
 end
 
 crumb :menus do

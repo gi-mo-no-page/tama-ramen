@@ -1,0 +1,37 @@
+<%= form_with model: @shop, local: true do |f| %>
+<div class='field-label'>
+    <%= f.label :写真 %>
+  </div>
+  <div class='field-input'>
+    <%= f.file_field :image, id:"#" %>
+  </div>
+  <div class='field-label'>
+    <%= f.label :店名 %>
+  </div>
+  <div class='field-input'>
+    <%= f.text_field :name, autofocus: true%>
+  </div>
+  <div class='field-label'>
+    <%= f.label :紹介文 %>
+  </div>
+  <div class='field-input'>
+    <%= f.text_area :text, autofocus: true%>
+  </div>
+  <div class='field-label'>
+    <%= f.label :ジャンル %>
+  </div>
+  <div class='field-input'>
+  <%= f.select :category_id, [['しょうゆ', 1], ['みそ', 2], ['とんこつ', 3],['しお', 4],['つけ麺', 5],['担々麺', 6],['油そば', 7],['家系', 8],['二郎系', 9],['その他', 10]], {include_blank: '選択ボックス'}, 
+class: 'sample' %>
+  </div>
+  <div class='field-label'>
+    <%= f.label :住所 %>
+  </div>
+  <div class='field-input'>
+    <%= f.text_field :address, autofocus: true%>
+  </div>
+  <div class='actions'>
+    <%= f.submit "更新", class: 'btn'%>
+  </div>
+
+<% end %>

@@ -50,9 +50,8 @@
 </ul>
 
 <ul>
-<li>☆４以上の人気店から探す</li>
+<li>新しい投稿から探す</li>
 <li><%= link_to  "二郎系", "/shops/search?q%5Bcategory_name_eq%5D=二郎系" %></li>
-
 </ul>
 
 
@@ -63,8 +62,9 @@
       <%= image_tag shop.image.variant(resize:'150x150'), class: '#' if shop.image.attached? %>
       <h5><%= shop.text %></h5>
       <h5><%= shop.category.name %></h5>
-
     <% end %>
   <% end %>
+
     <%= paginate(@shops) %>
+
   <%= link_to  "お店の登録", new_shop_path %>
