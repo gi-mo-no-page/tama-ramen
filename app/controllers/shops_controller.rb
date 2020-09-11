@@ -29,6 +29,7 @@ class ShopsController < ApplicationController
     @results = @p.result.includes(:category).order(created_at: :desc).page(params[:page]).per(5)
   end
 
+
   private
   def shop_params
     params.require(:shop).permit(:name, :text, :genre_id, :address, :image,:category_id)

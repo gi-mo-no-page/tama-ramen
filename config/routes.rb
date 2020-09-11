@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     resources :menus, only: :index
     collection do
       get 'search'
+      get 'category'
     end
   end
   root to: "shops#index"
