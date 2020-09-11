@@ -48,10 +48,10 @@
 <%= link_to  "口コミ", shop_reviews_path(@shop) %>
 <%= link_to  "Mapへ", shop_maps_path(@shop) %>
 
-<%# if user_signed_in? && current_user.id == @shop.user.id %>
+<% if user_signed_in? && current_user.id == @shop.user.id %>
   <%= link_to  "編集", edit_shop_path %>
   <%= link_to  "削除", shop_path, method: :delete,data: { confirm: '削除しますか？' } %>
-<%# end %>
+<% end %>
 <%= link_to(root_path) do %>
 <i class="fas fa-home"></i>
 <% end %>

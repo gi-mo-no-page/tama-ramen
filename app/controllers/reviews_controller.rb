@@ -21,18 +21,38 @@ class ReviewsController < ApplicationController
   end
 
   def edit
+    @review = Review.find(params[:id])
   end
 
   def update
+    @review = Review.find(params[:id])
+    @shop = @review.shop
+    if @review.update(edit_params)
+      redirect_to shop_reviews_path(@shop.id)
+    else
+      render :edit
+    end
   end
 
   def destroy
+    @review = Review.find(params[:id])
+    @shop = @review.shop
+    if @review.destroy
+      redirect_to shop_reviews_path(@shop.id)
+    else
+      render :show
+    end
+
+
   end
 
   
   private
   def review_params
     params.require(:review).permit(:title, :text, :rate).merge(user_id: current_user.id, shop_id: params[:shop_id])
+  end
+  def edit_params
+    params.require(:review).permit(:title, :text, :rate)
   end
 
 

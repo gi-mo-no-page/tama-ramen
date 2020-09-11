@@ -1,4 +1,8 @@
 <h3>Review</h3>
+<%= link_to  "口コミする", new_shop_review_path %>
+<%= link_to(root_path) do %>
+<i class="fas fa-home"></i>
+<% end %>
 
   <% if @reviews.length != 0 %>
     <% @reviews.each do |review| %>
@@ -17,12 +21,10 @@
           score: <%= review.rate %>,
         });
         </script> 
+        <%= link_to  "編集", edit_review_path(review.id) %>
+        <%= link_to  "削除", review_path(review.id), method: :delete,data: { confirm: '削除しますか？' }%>
     <% end %>
   <% end %>
 
 
 
-<%= link_to  "口コミする", new_shop_review_path %>
-<%= link_to(root_path) do %>
-<i class="fas fa-home"></i>
-<% end %>
