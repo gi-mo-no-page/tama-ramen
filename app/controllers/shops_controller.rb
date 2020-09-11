@@ -1,8 +1,8 @@
 class ShopsController < ApplicationController
-  before_action :search_shop, only: [:index, :search]
+  #before_action :search_shop, only: [:index, :search]
 
   def index
-    @shops = Shop.all.order(created_at: :desc).limit(5)
+    @shops = Shop.all.order(created_at: :desc).page(params[:page]).per(5)
     @user = current_user
     set_shop_column
     set_category_column
@@ -25,13 +25,28 @@ class ShopsController < ApplicationController
     @shop =Shop.find(params[:id])
   end
 
-  def search
-    @results = @p.result.includes(:category)
+  def edit 
+    @shop =Shop.find(params[:id])
   end
+
+  def update 
+    @shop =Shop.find(params[:id])
+    if @shop.update(shop_params)
+      redirect_to shop_path(@shop)
+    else
+      render :edit
+    end
+  end
+
+
+  def search
+    @results = @p.result.includes(:category).order(created_at: :desc).page(params[:page]).per(5)
+  end
+
 
   private
   def shop_params
-    params.require(:shop).permit(:name, :text, :genre_id, :address, :image,:category_id)
+    params.require(:shop).permit(:name, :text, :address, :image,:category_id)
   end
 
   def search_shop
