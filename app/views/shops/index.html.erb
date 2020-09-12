@@ -11,14 +11,12 @@
 
 <% if user_signed_in? %>
   <% if @user.avatar.attached? %>
-    <%= image_tag @user.avatar.variant(resize:'90x90'), class: '#'  %>
+    <%= image_tag @user.avatar.variant(resize:'90x90') %>
   <% else %>
-    <p><%= image_tag(asset_path('noimage.png'), :size => "90x90") %></p>
+    <p><%= image_tag(asset_path('noimage.png'), :size => "90x90")%></p>
   <% end %>
-
   <%= link_to "#{current_user.nickname}さん", user_path(current_user.id) %>
 <% end %>
-
   
 <h1>
   お店の検索
