@@ -9,9 +9,14 @@
 <%= link_to  "ログイン", new_user_session_path %>
 <% end %>
 
-<% if user_signed_in?  %>
-<%= image_tag @user.avatar.variant(resize:'90x90'), class: '#' if @user.avatar.attached? %>
-<%= link_to current_user.nickname, user_path(current_user.id) %>
+<% if user_signed_in? %>
+  <% if @user.avatar.attached? %>
+    <%= image_tag @user.avatar.variant(resize:'90x90'), class: '#'  %>
+  <% else %>
+    <p><%= image_tag(asset_path('noimage.png'), :size => "90x90") %></p>
+  <% end %>
+
+  <%= link_to "#{current_user.nickname}さん", user_path(current_user.id) %>
 <% end %>
 
   
