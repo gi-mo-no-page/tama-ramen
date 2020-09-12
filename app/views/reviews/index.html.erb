@@ -6,10 +6,16 @@
 
   <% if @reviews.length != 0 %>
     <% @reviews.each do |review| %>
-      <h5><%= review.user.nickname %></h5>
-      <h5><%= review.title %></h5>
-      <h5><%= review.text %></h5>
-      <h5><%= review.rate %></h5>
+      <h6><%= review.user.nickname %>さん</h6>
+      <% if review.user.avatar.attached? %>
+        <%= image_tag review.user.avatar.variant(resize:'50x50')  %>
+      <% else %>
+        <%= image_tag(asset_path('noimage.png'), :size => "90x90") %>
+      <% end %>
+
+      <h5>タイトル：<%= review.title %></h5>
+      <h5>内容：<%= review.text %></h5>
+      <h5>評価：<%= review.rate %></h5>
       <div id="star-<%= review.id %>"></div><!--star-->
         <script>
         $('#star-<%= review.id %>').raty({

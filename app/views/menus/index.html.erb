@@ -1,6 +1,6 @@
   <h3>メニューです</h3>
   
- <% if @menus.length != 0 %>
+ <% if @menus.present? %>
     <% @menus.each do |menu| %>
       <h5><%= menu.name %></h5>
       <h5><%= menu.price %></h5>
@@ -13,9 +13,10 @@
 <%= link_to  "戻る", shop_path(@shop.id) %>
 <br>
 <% if user_signed_in? && current_user.id == @shop.user.id %>
-  <%= link_to  "メニューの登録", new_shop_menu_path %>
+  <p>メニューの登録</p>
 
    <%= form_with model: [@shop,@menu], url: shop_menus_path, local: true do |f| %>
+   
    <%= render 'shared/error_messages', model: f.object %>
 
   <div class='field-label'>
