@@ -24,6 +24,7 @@
 - has_many:goods
 - has_many:wents
 - has_many:shops
+- has_many:menus
 
 
 ## shops
@@ -63,6 +64,7 @@
 | -------- | ---------- | ------------------------------ |
 | user     | references | null: false, foreign_key: true |
 | shop     | references | null: false, foreign_key: true |
+
 ### Association
 - belongs_to: user
 - belongs_to: shop
@@ -74,6 +76,7 @@
 | -------- | ---------- | ------------------------------ |
 | user     | references | null: false, foreign_key: true |
 | shop     | references | null: false, foreign_key: true |
+
 ### Association
 - belongs_to: user
 - belongs_to: shop
@@ -101,6 +104,8 @@
 | name     | string     | null:false                     |
 | price    | integer    | null:false                     |
 | shop     | references | null: false, foreign_key: true |
+| user     | references | null: false, foreign_key: true |
 
 ### Association
 - belongs_to: shop
+- belongs_to: user

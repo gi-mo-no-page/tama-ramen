@@ -1,4 +1,6 @@
 <%= form_with model: [@shop,@review], url: review_path, method: :patch, local: true do |f| %>
+<%= render 'shared/error_messages', model: f.object %>
+
   <div class='field-label'>
     <%= f.label :タイトル %>
   </div>

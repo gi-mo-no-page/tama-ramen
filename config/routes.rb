@@ -9,9 +9,9 @@ Rails.application.routes.draw do
   resources :shops, shallow: true do
     resources :goods, only: [:index, :create, :destroy]
     resources :wents, only: [:index, :create, :destroy]
-    resources :reviews
     resources :maps, only: :index
-    resources :menus, only: :index
+    resources :reviews
+    resources :menus
     collection do
       get 'search'
     end

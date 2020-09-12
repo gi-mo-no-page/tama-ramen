@@ -8,4 +8,16 @@ class Shop < ApplicationRecord
   belongs_to :category
   belongs_to :user
   after_validation :geocode, if: :address_changed?
+
+  with_options presence: true do
+    validates :image
+    validates :name
+    validates :text
+    validates :address
+    validates :category_id
+    validates :user_id
+  end
+
+
+
 end
