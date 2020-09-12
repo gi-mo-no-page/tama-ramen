@@ -2,11 +2,12 @@
 
 <%= render 'shared/error_messages', model: f.object %>
 
-<div class='field-label'>
+  <div class='field-label'>
     <%= f.label :写真 %>
   </div>
   <div class='field-input'>
-    <%= f.file_field :image, id:"#" %>
+    <%= f.file_field :image, id:"image" %>
+    <div id="image-list"></div>
   </div>
   <div class='field-label'>
     <%= f.label :店名 %>
