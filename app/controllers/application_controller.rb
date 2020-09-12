@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :search_shop
   before_action :set_shop_column
-
+  before_action :set_category_column
 
 
 
@@ -20,6 +20,10 @@ class ApplicationController < ActionController::Base
   def set_shop_column
     @shop_genre = Shop.select("genre").distinct 
     @shop_address = Shop.select("address").distinct 
+  end
+
+  def set_category_column
+    @category_name = Category.select("name").distinct
   end
   
 end

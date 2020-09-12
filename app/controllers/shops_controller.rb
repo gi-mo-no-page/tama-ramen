@@ -1,11 +1,8 @@
 class ShopsController < ApplicationController
-  #before_action :search_shop, only: [:index, :search]
 
   def index
     @shops = Shop.all.order(created_at: :desc).page(params[:page]).per(5)
     @user = current_user
-    set_shop_column
-    set_category_column
   end
 
   def new
@@ -58,19 +55,5 @@ class ShopsController < ApplicationController
   def shop_params
     params.require(:shop).permit(:name, :text, :address, :image,:category_id).merge(user_id: current_user.id)
   end
-
-  def search_shop
-    @p = Shop.ransack(params[:q])
-  end
- 
-  def set_shop_column
-    @shop_genre = Shop.select("genre").distinct 
-    @shop_address = Shop.select("address").distinct 
-  end
-
-  def set_category_column
-    @category_name = Category.select("name").distinct
-  end
-
 
 end
