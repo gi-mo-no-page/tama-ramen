@@ -5,6 +5,7 @@ class UsersController < ApplicationController
     @reviews = @user.reviews.includes(:shop)
     @goods = @user.goods.includes(:shop)
     @wents = @user.wents.includes(:shop)
+    @shops = @user.shops
   end
 
   def edit

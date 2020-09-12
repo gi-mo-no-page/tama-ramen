@@ -61,7 +61,6 @@
   <% if @shops.length != 0 %>
     <% @shops.each do |shop| %>
       <%= link_to shop.name, shop_path(shop.id) %>
-      <% breadcrumb :root %>
       <%= image_tag shop.image.variant(resize:'150x150'), class: '#' if shop.image.attached? %>
       <h5><%= shop.text %></h5>
       <h5><%= shop.category.name %></h5>

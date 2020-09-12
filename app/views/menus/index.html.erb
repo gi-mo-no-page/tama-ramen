@@ -1,10 +1,41 @@
   <h3>メニューです</h3>
   
- <% if @menus.length != 0 %>
+ <% if @menus.present? %>
     <% @menus.each do |menu| %>
       <h5><%= menu.name %></h5>
       <h5><%= menu.price %></h5>
+      <% if user_signed_in? && current_user.id == @shop.user.id %>
+        <%= link_to  "削除", menu_path(menu.id), method: :delete,data: { confirm: '削除しますか？' }%>
+      <% end %>
     <% end %>
   <% end %> 
+  <br>
+<%= link_to  "戻る", shop_path(@shop.id) %>
+<br>
+<% if user_signed_in? && current_user.id == @shop.user.id %>
+  <p>メニューの登録</p>
 
-  <%= link_to  "もどる", shop_path(@shop) %>
+   <%= form_with model: [@shop,@menu], url: shop_menus_path, local: true do |f| %>
+   
+   <%= render 'shared/error_messages', model: f.object %>
+
+  <div class='field-label'>
+    <%= f.label :メニュー名 %>
+  </div>
+  <div class='field-input'>
+    <%= f.text_field :name, autofocus: true%>
+  </div>
+
+  <div class='field-label'>
+    <%= f.label :値段 %>
+  </div>
+  <div class='field-input'>
+    <%= f.text_area :price, autofocus: true%>
+  </div>
+
+  <div class='actions'>
+    <%= f.submit "登録", class: ''%>
+  </div>
+
+  <% end %>
+<% end %> 

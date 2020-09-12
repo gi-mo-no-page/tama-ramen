@@ -1,0 +1,20 @@
+ja:
+ activerecord:
+   attributes:
+     user:
+       nickname: ニックネーム
+       avatar: 写真
+     shop:
+       name: 店名
+       text: テキスト
+       image: 画像
+       address: 住所
+       category: カテゴリー
+       category_id: ""
+     review:
+       title: タイトル
+       text: 口コミ内容
+       rate: 評価
+     menu:
+      name: 商品名
+      price: 値段

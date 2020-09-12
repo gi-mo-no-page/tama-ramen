@@ -3,7 +3,7 @@
 <% if @user.avatar.attached? %>
 <%= image_tag @user.avatar.variant(resize:'90x90')  %>
 <% else %>
-<p><%= image_tag(asset_path('noimage.png'), :size => "90x90") %></p>
+<%= image_tag(asset_path('noimage.png'), :size => "90x90") %>
 <% end %>
 
 <div>
@@ -12,11 +12,20 @@
 <% end %>
 </div>
 
-<% if @reviews.present? %>
 <div>
   口コミ数:<%= @reviews.count %>
 <div>
-<% end %>
+
+<div>
+投稿したお店：<%= @shops.count %>
+</div>
+
+  <% if @shops.length != 0 %>
+    <% @shops.each do |shop| %>
+      <%= link_to shop.name, shop_path(shop.id) %>
+      <%= image_tag shop.image.variant(resize:'90x90'), class: '#' if shop.image.attached? %>
+    <% end %>
+  <% end %>
 
 <div>
   <%= link_to  "お気に入り店", shop_goods_path(@user) %>
