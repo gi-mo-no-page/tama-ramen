@@ -23,13 +23,17 @@
 </h1>
 <%= search_form_for @p, url: search_shops_path do |f| %>
   <%= f.label :name_cont, 'お店の名前' %>
-  <%= f.search_field :name_cont, placeholder:"お店の名前" %>
+  <%= f.search_field :name_cont, placeholder:"お店の名前", class: "form" ,id: "form" %>
+    <ul id="result">
+    </ul>
   <br>
   <%= f.label :category_name_eq, 'カテゴリー：' %>
     <%= f.collection_select :category_name_eq, @category_name, :name, :name, include_blank: '指定なし' %>
     <br>
     <%= f.label :address_cont, 'エリア' %>
-  <%= f.search_field :address_cont, placeholder:"例)多摩市" %>
+  <%= f.search_field :address_cont, placeholder:"例)多摩市", class: "address", id: "address" %>
+    <ul id="search-result">
+    </ul>
   <br>
   <%= f.submit '検索' %>
 <% end %>

@@ -5,11 +5,12 @@
 
 require('jquery')
 require("@rails/ujs").start()
-// require("turbolinks").start()
+require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
 require('../raty')
 require('../preview')
+require('../search')
 import 'bootstrap';
 import '../stylesheets/application';
 

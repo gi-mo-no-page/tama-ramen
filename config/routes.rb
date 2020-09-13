@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     resources :menus
     collection do
       get 'search'
+      get 'replay'
     end
   end
   root to: "shops#index"
