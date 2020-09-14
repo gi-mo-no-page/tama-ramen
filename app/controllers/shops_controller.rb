@@ -1,7 +1,7 @@
 class ShopsController < ApplicationController
 
   def index
-    @shops = Shop.all.order(created_at: :desc).page(params[:page]).per(5)
+    @shops = Shop.all.order(created_at: :desc).limit(5)
     @user = current_user
   end
 
@@ -54,12 +54,6 @@ class ShopsController < ApplicationController
     return nil if params[:keyword] == ""
     @name = Shop.where('name LIKE(?)', "%#{params[:keyword]}%")
     render json: @name
-  end
-
-  def address
-    return nil if params[:keyword] == ""
-    @address = Shop.where('address LIKE(?)', "%#{params[:keyword]}%")
-    render json: @address
   end
 
   private

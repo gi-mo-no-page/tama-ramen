@@ -1,3 +1,288 @@
 // Place all the styles related to the shops controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.sign-in, .login{
+  font-size: 18px;
+  text-align: center;
+  padding: 10px;
+}
+
+.search-form {
+  position: relative;
+}
+
+.mypage-room {
+  width: 300px;
+  height: 400px;
+  background-color: #e9e77a;
+  position: absolute;
+  top:300px;
+  right:50px ;
+}
+.user-section {
+  width: 250px;
+  height: 350px;
+  background-color: rgb(254, 255, 240);
+  padding: 20px;
+  margin: 22px;
+}
+.user-image {
+  text-align: center;
+  padding:20px;
+}
+.usernickname-link {
+  text-align: center;
+  font-size: 18px;
+  color: #000;
+
+}
+.new-shop-link {
+  text-align: center;
+  margin: 20px 0;
+}
+.new-shop {
+  font-size: 16px;
+  border: whitesmoke solid 2px;
+  color:white;
+  padding: 10px 15px;
+  background-color: lightgrey;
+}
+
+.sign-in, .login, .logout {
+  font-size: 16px;
+  border: whitesmoke solid 2px;
+  color:white;
+  padding: 10px 15px;
+  background-color: lightgrey;
+}
+
+.sign-in-link, .login-link, .logout-link {
+  text-align: center;
+  margin: 50px 0;
+}
+
+
+.no-login {
+  margin: 30px 0;
+  text-align: center;
+}
+.user-info {
+  text-align: center;
+  margin:10px 5px;
+}
+
+
+
+
+
+
+
+.title {
+  font-size: 100px;
+  font-family: monospace;
+  color: #ffffff;
+  margin-left: 20px;
+}
+.sub-title {
+  color: #ffffff;
+  margin-left: 40px;
+
+}
+
+.header {
+  height: 600px;
+  width: 100%;
+  background-image: image-url("ra-men.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+.header-list {
+  height: 430px;
+  width: 100%;
+}
+
+.search-form {
+  display: flex;
+  justify-content: center;
+  height: 150px;
+  width: 100%;
+}
+
+.seach-input {
+  width: 800px;
+}
+
+
+// <headerここまで>
+
+
+.main {
+  height: calc(100vh - 700px);
+  width: 100%;
+  background-color: skyblue;
+}
+
+.mypage-area {
+  height: 450px;
+  width: 300px;
+  background-color: yellow;
+}
+
+
+.area {
+  width: 100%;
+  background-color: white;
+} 
+.area-section {
+  width: 100%;
+}
+
+.category {
+  width: 100%;
+  // background-color:wheat;
+
+}
+
+.posts {
+  width: 100%;
+  // background-color:yellow;
+  height: 350px;
+
+}
+
+
+
+
+.list-title {
+  font-size:24px;
+  font-weight: bold;
+  font-family: fantasy;
+  padding-top: 50px;
+  padding-bottom: 20px;
+  margin-left: 50px;
+}
+
+.north {
+  width: 90%;
+}
+.area-section {
+  display: flex;
+  margin-left:140px;
+  padding:10px;
+
+}
+
+.area-title {
+  color: lightsalmon;
+  font-size: 16px;
+  margin-left: 110px;
+}
+.link {
+  border:  solid 2px lightgray;
+  padding:15px 20px;
+  margin-left: 5px;
+}
+.link:hover {
+  opacity: 0.5;
+}
+
+.new-posts {
+  display: flex;
+  justify-content: space-evenly;
+}
+.shop-image {
+  width: 130px;
+  height: 130px;
+}
+
+
+
+
+//<mainここまで>
+
+.footer {
+  height: 100px;
+  width: 100%;
+  background-color:lightgray;
+  opacity: 0.8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.lang {
+  display: flex;
+  padding: 0 20px;
+  color: gray;
+  opacity: 0.9;
+
+}
+.lang-list {
+  padding: 0 20px;
+}
+.contact {
+  color: gray;
+  padding-top: 10px;
+  
+}
+.footer-logo {
+  display: flex;
+  justify-content: center;
+}
+.footer-title {
+  font-size:28px;
+  padding-right: 20px;
+  margin-right: 40px;
+}
+.cp_ipselect {
+  overflow: hidden;
+  width: 90%;
+  margin: 2em auto;
+  text-align: center;
+}
+.cp_ipselect select {
+  width: 100%;
+  padding-right: 1em;
+  cursor: pointer;
+  text-indent: 0.01px;
+  text-overflow: ellipsis;
+  border: none;
+  outline: none;
+  background: transparent;
+  background-image: none;
+  box-shadow: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+.cp_ipselect select::-ms-expand {
+  display: none;
+}
+.cp_ipselect.cp_sl04 {
+  position: relative;
+  border-radius: 2px;
+  border: 2px solid #da3c41;
+  border-radius: 50px;
+  background: #ffffff;
+}
+.cp_ipselect.cp_sl04::before {
+  position: absolute;
+  top: 0.8em;
+  right: 0.8em;
+  width: 0;
+  height: 0;
+  padding: 0;
+  content: '';
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 6px solid #da3c41;
+  pointer-events: none;
+}
+.cp_ipselect.cp_sl04 select {
+  padding: 8px 8px 8px 8px;
+  color: #da3c41;
+}
