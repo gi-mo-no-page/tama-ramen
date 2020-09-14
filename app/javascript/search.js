@@ -1,5 +1,5 @@
 $(document).on('turbolinks:load', function(){
-  $(document).on('keyup', '.form', function(e){
+  $(document).on('keyup', '.name-form', function(e){
   e.preventDefault();
   var input = $.trim($(this).val());
   $.ajax({
