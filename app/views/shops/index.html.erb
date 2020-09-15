@@ -2,28 +2,33 @@
   <div class="header-list">
     <div class="title">TAMA-RAMEN</div>
     <div class="sub-title">東京・多摩地区限定ラーメン</div>
-    <div class="right-header">
-  </div><!--right-header-->
-</div><!--header-list-->
+ </div><!--header-list-->
 
 <div class="search-form">
   <div class="search-input">
-     <div>エリア・店名で探す</div>
-    <form class="form-inline">
+    <div class="search-title">キーワードから探す</div>
       <%= search_form_for @p, url: search_shops_path do |f| %>
-          <div>
-          <ul id="result">
-          </ul>
-          </div>
+    <form class="form-inline">
+        <div class="search-string">
+        <div class="name-seach">
         <%= f.search_field :name_cont, placeholder:":お店の名前", class: "name-form " ,id: "form" %>
-        <%= f.search_field :address_cont, placeholder:"例)多摩市", class: "address", id: "address" %>
-        <div class="cp_ipselect cp_sl04">
-          <%= f.collection_select :category_name_eq, @category_name, :name, :name, include_blank: '指定なし', class:"custom-select" %>
+         </div>
+          
+        <div>
+        <%= f.search_field :address_cont, placeholder:":エリア[ 例)多摩市 ]", class: "address", id: "address" %>
         </div>
-          <%= f.submit '検索' %>
-        
-      <% end %>
+
+        <div class="cp_ipselect cp_sl04">
+          <%= f.collection_select :category_name_eq, @category_name, :name, :name, include_blank: 'カテゴリー', class:"custom-select" %>
+        </div>
+        <div>
+          <%= f.submit '検索' ,class:"search-btn" %>
+        </div>
+      </div>
     </form>
+      <% end %>
+          <ul id="result", class="result">
+          </ul>
 <div class="mypage-room">
   <div class="mypage">
 
@@ -177,6 +182,9 @@
 
       <div class="posts">
         <h6 class="list-title">新しい投稿から探す</h6>
+          <div class="">
+            <%= link_to  "全てのお店を見る", "/shops/search?q%5Baddress_cont%5D=" ,class: "area-title"%>
+          </div>
         <div class="new-posts">
           <% if @shops.length != 0 %>
             <% @shops.each do |shop| %>
@@ -187,7 +195,7 @@
               
               <div class="shop-info">
               <span><%= link_to shop.name, shop_path(shop.id) %></span><br>
-              <span>ｶﾃｺﾞﾘｰ：<%= shop.category.name %></span><br>
+              <span class="post-catrgory">ｶﾃｺﾞﾘｰ：<%= shop.category.name %></span><br>
               <span>投稿者：<%= shop.user.nickname %>さん</span><br>
               </div>
             </div>
@@ -198,31 +206,7 @@
 </div><!--main-->
 
 
- <div class="footer">
-  <div class="footer-content">
-
-    <div class="langege">
-    <ul class="lang">
-    <li class="lang-list">言語：</li>
-    <li class="lang-list">English</li>
-    <li class="lang-list">简体中文</li>
-    <li class="lang-list">繁体中文</li>
-    <li class="lang-list">한국어</li>
-    </ul>
-    </div>
-
-    <div class="footer-logo">
-    <div class="footer-title">
-       TAMA RA-MEN
-    </div>
-
-    <div class="contact">
-    お問い合わせ
-    </div>
-    </div>
-  </div>
-</div><!--footer--> 
-
+<%= render "shared/footer" %>
 
 
 

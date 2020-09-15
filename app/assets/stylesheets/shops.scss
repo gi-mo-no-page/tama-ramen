@@ -91,6 +91,7 @@ ul {
 .sub-title {
   color: #ffffff;
   margin-left: 40px;
+  font-size: 20px;
 
 }
 
@@ -113,12 +114,84 @@ ul {
   height: 150px;
   width: 100%;
 }
-
+.search-string {
+  display: flex;
+  justify-content: center;
+  padding-top: 80px;
+}
 .seach-input {
   width: 800px;
+  position: relative;
 }
-
-
+.search-title {
+  font-size: 20px;
+  color:lightslategrey;
+  background-color: white;
+  border: lightslategrey solid 1px;
+  padding:17px;
+  position: absolute;
+  left:166px;
+  top:79px;
+}
+.name-form, .address {
+  padding: 20px 26px;
+  border:none;
+  
+}
+.search-btn {
+  padding:20px 26px;
+  border: none;
+  color: #ffffff;
+  background-color: lightslategray;
+}
+.cp_ipselect {
+  overflow: hidden;
+  width: 100%;
+  // margin: 2em auto;
+  // text-align: center;
+}
+.cp_ipselect select {
+  width: 100%;
+  // padding-right: 1em;
+  cursor: pointer;
+  text-indent: 0.01px;
+  text-overflow: ellipsis;
+  border: none;
+  outline: none;
+  background: transparent;
+  background-image: none;
+  box-shadow: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+.cp_ipselect select::-ms-expand {
+  display: none;
+}
+.cp_ipselect.cp_sl04 {
+  position: relative;
+  padding: 12px 24px;
+  // border-radius: 2px;
+  //  border: 2px solid lightgray;
+  // border-radius: 50px;
+  background: #ffffff;
+}
+.cp_ipselect.cp_sl04::before {
+  position: absolute;
+  top: 0.8em;
+  right: 0.8em;
+  width: 0;
+  height: 0;
+  padding: 0;
+  content: '';
+  // border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 6px solid white;
+  pointer-events: none;
+}
+.cp_ipselect.cp_sl04 select {
+  padding: 8px 8px 8px 8px;
+  color:lightslategray;
+}
 // <headerここまで>
 
 
@@ -164,7 +237,7 @@ ul {
   font-weight: bold;
   font-family: fantasy;
   padding-top: 50px;
-  padding-bottom: 20px;
+  padding-bottom: 10px;
   margin-left: 50px;
 }
 
@@ -196,6 +269,14 @@ ul {
   display: flex;
   justify-content: space-evenly;
 }
+.post-all {
+  font-size: 16px;
+  padding-left: 60px;
+}
+.post-catrgory {
+  font-family: fantasy;
+}
+
 .shop-image {
   width: 130px;
   height: 130px;
@@ -207,7 +288,7 @@ ul {
 //<mainここまで>
 
 .footer {
-  height: 100px;
+  height: 130px;
   width: 100%;
   background-color:lightgray;
   opacity: 0.8;
@@ -217,17 +298,18 @@ ul {
 }
 .lang {
   display: flex;
-  padding: 0 20px;
+  padding: 10px 20px;
   color: gray;
   opacity: 0.9;
+  border-bottom: grey solid 2px;
 
 }
 .lang-list {
-  padding: 0 20px;
+  padding: 12px;
 }
 .contact {
   color: gray;
-  padding-top: 10px;
+  padding-top: 8px;
   
 }
 .footer-logo {
@@ -238,51 +320,4 @@ ul {
   font-size:28px;
   padding-right: 20px;
   margin-right: 40px;
-}
-.cp_ipselect {
-  overflow: hidden;
-  width: 90%;
-  margin: 2em auto;
-  text-align: center;
-}
-.cp_ipselect select {
-  width: 100%;
-  padding-right: 1em;
-  cursor: pointer;
-  text-indent: 0.01px;
-  text-overflow: ellipsis;
-  border: none;
-  outline: none;
-  background: transparent;
-  background-image: none;
-  box-shadow: none;
-  -webkit-appearance: none;
-  appearance: none;
-}
-.cp_ipselect select::-ms-expand {
-  display: none;
-}
-.cp_ipselect.cp_sl04 {
-  position: relative;
-  border-radius: 2px;
-  border: 2px solid #da3c41;
-  border-radius: 50px;
-  background: #ffffff;
-}
-.cp_ipselect.cp_sl04::before {
-  position: absolute;
-  top: 0.8em;
-  right: 0.8em;
-  width: 0;
-  height: 0;
-  padding: 0;
-  content: '';
-  border-left: 6px solid transparent;
-  border-right: 6px solid transparent;
-  border-top: 6px solid #da3c41;
-  pointer-events: none;
-}
-.cp_ipselect.cp_sl04 select {
-  padding: 8px 8px 8px 8px;
-  color: #da3c41;
 }
