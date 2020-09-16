@@ -1,5 +1,14 @@
 <%= render "shared/header" %>
 
+    <div class="user-contents-list">
+      <div class="contents-item1">
+          クチコミ数：<%= @reviews.count %>
+        <%= link_to  "お気に入り", shop_goods_path(@user) %>
+        ：<%= @goods.count %>
+        <%= link_to  "行ったお店", shop_wents_path(@user) %>
+        ：<%= @wents.count %>
+      <div> 
+    </div>
 
 <div class="user-main">
   <div class="user-header">
@@ -14,7 +23,7 @@
 
     <div class="user-avatar">
       <% if @user.avatar.attached? %>
-        <%= image_tag @user.avatar.variant(resize:'150x150')  %>
+        <%= image_tag @user.avatar.variant(gravity: :center, resize:"150x150^", crop:"150x150+0+0").processed  %>
       <% else %>
         <%= image_tag(asset_path('noimage.png'), :size => "150x150") %>
       <% end %>
@@ -24,7 +33,13 @@
      <%= "#{current_user.nickname}さん" %>
   <div>
 
-    
+    <div class="user-contents-left">
+      <% if @user.text.present? %>
+      <%= @user.text %>
+      <% end %>
+      
+    </div>
+
    </div><!--user-header-area-->
   </div><!--user-header-->
 
@@ -32,78 +47,57 @@
 
  <div class="user-contents"> 
 
-    <div class="user-contents-right">
-      <div class="contents-item">
-        口コミ数：<%= @reviews.count %>
-      <div>
+  <div class="user-contents-right">
+     <div class="user-post-title"><i class="fas fa-quidditch">
+     投稿したお店</i></div>
 
-      <div class="contents-item">
-        <%= link_to  "お気に入り店", shop_goods_path(@user) %>
-        ：<%= @goods.count %>
-      <div>
+      <div class="new-posts"> 
+       <% if @shops.length != 0 %>
+        <% @shops.each do |shop| %>
+        <div>
+          <div class="shop-image">
+          <%= image_tag shop.image.variant(gravity: :center, resize:"100x100^", crop:"100x100+0+0").processed, class: '#' if shop.image.attached? %>
+          </div>
+          <div class="shop-info">
+          <span><%= link_to shop.name, shop_path(shop.id) %></span><br>
+          </div>
+          <div class="shop-info">
+          <span>ｶﾃｺﾞﾘｰ：<%= shop.category.name %></span><br>
+          </div>
+          <% if shop.reviews.present? %>
+            <span class="review-rate">
+            <%= shop.reviews.average(:rate).floor(2) %>
+            </span>
+              <div id="star-<%= shop.id %>"></div><!--star-->
+                <script>
+                $('#star-<%= shop.id %>').raty({
+                  size: 36,
+                  starOff:  '<%= asset_path('star-off.png') %>',
+                  starOn : '<%= asset_path('star-on.png') %>',
+                  starHalf: '<%= asset_path('star-half.png') %>',
+                  readOnly: true,
+                  score: <%= shop.reviews.average(:rate) %>,
+                });
+                </script> 
+          <% else %>
+          <span class="review-rate">
+          0.0
+          </span><br>
+          <%= image_tag asset_path('star-off.png'), class: '#' %>
+          <%= image_tag asset_path('star-off.png'), class: '#' %>
+          <%= image_tag asset_path('star-off.png'), class: '#' %>
+          <%= image_tag asset_path('star-off.png'), class: '#' %>
+          <%= image_tag asset_path('star-off.png'), class: '#' %><br>
+          *口コミ未投稿*<br>
+          <% end %>
 
-      <div class="contents-item">
-        <%= link_to  "行った店", shop_wents_path(@user) %>
-        ：<%= @wents.count %>
-      <div>
- </div><!--user-contents-right-->
 
 
-    <div class="user-contents-left">
-      <% if @user.text.present? %>
-      <%= @user.text %>
+        </div>
+        <% end %>
       <% end %>
-    </div>
-
-
-
-
-
-    
-
-
+      </div>
+ </div><!--user-contents-right-->
   </div><!--user-contents-->
-
-  
 </div><!--user-main-->
-
-
-
-
-
-<%
-=begin%>
-
-
-<div>
-投稿したお店：<%= @shops.count %>
-</div>
-
-  <% if @shops.length != 0 %>
-    <% @shops.each do |shop| %>
-      <%= link_to shop.name, shop_path(shop.id) %>
-      <%= image_tag shop.image.variant(resize:'90x90'), class: '#' if shop.image.attached? %>
-    <% end %>
-  <% end %>
-
-<div>
-  <%= link_to  "お気に入り店", shop_goods_path(@user) %>
-  <%= @goods.count %>
-<div>
-<div>
-  <%= link_to  "行った店", shop_wents_path(@user) %>
-  <%= @wents.count %>
-<div>
-
-<%= link_to "編集", edit_user_path(current_user.id) %>
-
-<%= link_to(root_path) do %>
-<i class="fas fa-home"></i>
-<% end %> 
-<%
-=end%>
-
-
-
-
 <%= render "shared/footer" %>

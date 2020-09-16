@@ -1,0 +1,82 @@
+.pagination {
+  justify-content: center;
+}
+.results-area-title {
+  font-size: 24px;
+  text-align: center;
+}
+
+.results-area {
+  width: 100%;
+  height: 1000px;
+  background-color:white;
+  margin: 50px 0;
+}
+
+.results-contents {
+  width: 80%;
+  height: 180px;
+  display: flex;
+  margin:  0 auto ;
+  border-top: lightgrey solid 2px;
+}
+.results-contents-left {
+  flex:1;
+  border-left: whitesmoke solid 2px;
+  border-right: whitesmoke solid 2px;
+}
+.results-contents-right {
+  flex:2;
+  padding-left:8px;
+}
+
+.result-image {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.right-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  border-bottom: whitesmoke solid 2px;
+
+
+}
+.result-name {
+  font-size: 28px;
+  padding: 10px;
+}
+.result-name-link:hover {
+  text-decoration: none;
+  color: lightcoral;
+}
+.result-category-name {
+  font-size: 18px;
+}
+
+.right-bottom {
+  display: flex;
+}
+
+.result-text {
+  height: 100px;
+  width: 80%;
+  padding: 15px;
+  margin:8px 10px;
+  background-color: whitesmoke;
+  font-size: 16px;
+}
+.shop-owner-comment {
+  color: lightsalmon;
+}
+
+.nothig {
+  text-align: center;
+}
+
+.root-path {
+  color: lightcoral;
+  margin-left: 100px;
+  font-size: 16px;
+}

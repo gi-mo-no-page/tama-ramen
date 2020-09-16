@@ -1,8 +1,39 @@
 <%= render "shared/header" %>
+<div class="show-box">
+  <div class="show-name">
+  </div>
+  <div class="show-image">
+  </div>
 
 
 
-<%= image_tag @shop.image.variant(resize:'300x300'), class: '#' if @shop.image.attached? %>
+
+</div>
+
+<div class="">
+</div>
+<div class="">
+</div>
+<div class="">
+</div>
+<div class="">
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<%
+=begin%>
+ <%= image_tag @shop.image.variant(resize:'300x300'), class: '#' if @shop.image.attached? %>
 <h3><%= @shop.name %></h3>
 <h5><%= @shop.text %></h5>
 <h5><%= @shop.category.name %></h5>
@@ -27,7 +58,7 @@
       <% end %>
   <% else %>
     <%= link_to(shop_wents_path(@shop.id),method: :post) do %>
-      <i class="far fa-meh">行ってない</i>
+      <i class="far fa-meh">行ってない</i><br>
     <% end %>
   <% end %>
   <% else%>
@@ -36,9 +67,9 @@
  
 
 <% if @shop.reviews.present? %>
-<h5><%= @shop.reviews.average(:rate).floor(2) %></h5>
-<% end %>
-
+<div class="review-rate">
+  <%= @shop.reviews.average(:rate).floor(2) %>
+</div>
 <div id="star"></div><!--star-->
   <script>
   $('#star').raty({
@@ -50,6 +81,19 @@
     score: <%= @shop.reviews.average(:rate) %>,
   });
   </script> 
+<% else %>
+    <span class="review-rate">
+    0.0
+    </span><br>
+    <%= image_tag asset_path('star-off.png'), class: '#' %>
+    <%= image_tag asset_path('star-off.png'), class: '#' %>
+    <%= image_tag asset_path('star-off.png'), class: '#' %>
+    <%= image_tag asset_path('star-off.png'), class: '#' %>
+    <%= image_tag asset_path('star-off.png'), class: '#' %><br>
+    *口コミ未投稿*<br>
+
+<% end %>
+
 
 <%= link_to  "メニュー", shop_menus_path(@shop) %>
 <%= link_to  "口コミ", shop_reviews_path(@shop) %>
@@ -61,4 +105,8 @@
 <% end %>
 <%= link_to(root_path) do %>
 <i class="fas fa-home"></i>
-<% end %>
+<% end %> 
+<%
+=end%>
+
+<%= render "shared/footer" %>

@@ -196,7 +196,7 @@ ul {
 
 
 .main {
-  height: calc(100vh - 700px);
+  height: 1300px;
   width: 100%;
   background-color: skyblue;
 }
@@ -282,42 +282,14 @@ ul {
   height: 130px;
 }
 
-
-
-
 //<mainここまで>
 
-.footer {
-  height: 130px;
-  width: 100%;
-  background-color:lightgray;
-  opacity: 0.8;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.lang {
-  display: flex;
-  padding: 10px 20px;
-  color: gray;
-  opacity: 0.9;
-  border-bottom: grey solid 2px;
+.footer-index {
+  margin-top:60px ;
+  background-color:whitesmoke;
 
 }
-.lang-list {
-  padding: 12px;
-}
-.contact {
-  color: gray;
-  padding-top: 8px;
-  
-}
-.footer-logo {
-  display: flex;
-  justify-content: center;
-}
-.footer-title {
-  font-size:28px;
-  padding-right: 20px;
-  margin-right: 40px;
+.langege-index {
+  margin-left: 470px;
+  width: 33%;
 }

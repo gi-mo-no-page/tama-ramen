@@ -1,4 +1,3 @@
-$(document).on('turbolinks:load', function(){
   $(document).on('keyup', '.name-form', function(e){
   e.preventDefault();
   var input = $.trim($(this).val());
@@ -17,5 +16,4 @@ $(document).on('turbolinks:load', function(){
     })
     
   })
-});
 });

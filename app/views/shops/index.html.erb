@@ -36,11 +36,11 @@
     <div class="user-section">
       <% if @user.avatar.attached? %>
       <div class="user-image">
-        <%= image_tag @user.avatar.variant(resize:'90x90') %>
+        <%= image_tag @user.avatar.variant(gravity: :center, resize:"100x100^", crop:"100x100+0+0").processed %>
       </div>
       <% else %>
       <div class="user-image">
-        <%= image_tag(asset_path('noimage.png'), :size => "90x90")%>
+        <%= image_tag(asset_path('noimage.png'), :size => "100x100")%>
       </div>
       <% end %>
 
@@ -165,16 +165,16 @@
                 カテゴリー
               </div>
             <ul class="area-section">
-            <li class="link"><%= link_to  "しょうゆ", "/shops/search?q%5Baddress_cont%5D=しょうゆ" %></li>
-            <li class="link"><%= link_to  "みそ", "/shops/search?q%5Baddress_cont%5D=みそ" %></li>
-            <li class="link"><%= link_to  "とんこつ", "/shops/search?q%5Baddress_cont%5D=とんこつ" %></li>
-            <li class="link"><%= link_to  "しお", "/shops/search?q%5Baddress_cont%5D=しお" %></li>
-            <li class="link"><%= link_to  "つけ麺", "/shops/search?q%5Baddress_cont%5D=つけ麺" %></li>
-            <li class="link"><%= link_to  "坦々麺", "/shops/search?q%5Baddress_cont%5D=坦々麺" %></li>
-            <li class="link"><%= link_to  "油そば", "/shops/search?q%5Baddress_cont%5D=油そば" %></li>
-            <li class="link"><%= link_to  "家系", "/shops/search?q%5Baddress_cont%5D=家系" %></li>
-            <li class="link"><%= link_to  "二郎系", "/shops/search?q%5Baddress_cont%5D=二郎系" %></li>
-            <li class="link"><%= link_to  "その他", "/shops/search?q%5Baddress_cont%5D=その他" %></li>
+            <li class="link"><%= link_to  "しょうゆ", "/shops/search?q%5Bcategory_name_eq%5D=しょうゆ" %></li>
+            <li class="link"><%= link_to  "みそ", "/shops/search?q%5Bcategory_name_eq%5D=みそ" %></li>
+            <li class="link"><%= link_to  "とんこつ", "/shops/search?q%5Bcategory_name_eq%5D=とんこつ" %></li>
+            <li class="link"><%= link_to  "しお", "/shops/search?q%5Bcategory_name_eq%5D=しお" %></li>
+            <li class="link"><%= link_to  "つけ麺", "/shops/search?q%5Bcategory_name_eq%5D=つけ麺" %></li>
+            <li class="link"><%= link_to  "坦々麺", "/shops/search?q%5Bcategory_name_eq%5D=坦々麺" %></li>
+            <li class="link"><%= link_to  "油そば", "/shops/search?q%5Bcategory_name_eq%5D=油そば" %></li>
+            <li class="link"><%= link_to  "家系", "/shops/search?q%5Bcategory_name_eq%5D=家系" %></li>
+            <li class="link"><%= link_to  "二郎系", "/shops/search?q%5Bcategory_name_eq%5D=二郎系" %></li>
+            <li class="link"><%= link_to  "その他", "/shops/search?q%5Bcategory_name_eq%5D=その他" %></li>
             </ul>
           </div><!--north-->
         </div><!--north-south-->
@@ -190,13 +190,41 @@
             <% @shops.each do |shop| %>
               <div>
               <div class="shop-image">
-              <%= image_tag shop.image.variant(resize:'130x130'), class: '#' if shop.image.attached? %>
+              <%= image_tag shop.image.variant(gravity: :center, resize:"120x120^", crop:"120x120+0+0").processed, class: '#' if shop.image.attached? %>
               </div>
               
               <div class="shop-info">
               <span><%= link_to shop.name, shop_path(shop.id) %></span><br>
-              <span class="post-catrgory">ｶﾃｺﾞﾘｰ：<%= shop.category.name %></span><br>
               <span>投稿者：<%= shop.user.nickname %>さん</span><br>
+              <span class="post-catrgory">ｶﾃｺﾞﾘｰ：<%= shop.category.name %></span><br>
+        <div>
+        <% if shop.reviews.present? %>
+            <span class="review-rate">
+            <%= shop.reviews.average(:rate).floor(2) %>
+            </span>
+              <div id="star-<%= shop.id %>"></div><!--star-->
+                <script>
+                $('#star-<%= shop.id %>').raty({
+                  size: 36,
+                  starOff:  '<%= asset_path('star-off.png') %>',
+                  starOn : '<%= asset_path('star-on.png') %>',
+                  starHalf: '<%= asset_path('star-half.png') %>',
+                  readOnly: true,
+                  score: <%= shop.reviews.average(:rate) %>,
+                });
+                </script> 
+          <% else %>
+                <span class="review-rate">
+                0.0
+                </span><br>
+                <%= image_tag asset_path('star-off.png'), class: '#' %>
+                <%= image_tag asset_path('star-off.png'), class: '#' %>
+                <%= image_tag asset_path('star-off.png'), class: '#' %>
+                <%= image_tag asset_path('star-off.png'), class: '#' %>
+                <%= image_tag asset_path('star-off.png'), class: '#' %><br>
+                *口コミ未投稿*<br>
+          <% end %>
+          </div>
               </div>
             </div>
             <% end %>
@@ -206,7 +234,30 @@
 </div><!--main-->
 
 
-<%= render "shared/footer" %>
+ <div class="footer-index">
+  <div class="footer-content">
+
+    <div class="langege-index">
+    <ul class="lang">
+    <li class="lang-list">言語：</li>
+    <li class="lang-list">English</li>
+    <li class="lang-list">简体中文</li>
+    <li class="lang-list">繁体中文</li>
+    <li class="lang-list">한국어</li>
+    </ul>
+    </div>
+
+    <div class="footer-logo">
+    <div class="footer-title">
+       ©TAMA RA-MEN
+    </div>
+
+    <div class="contact">
+    お問い合わせ
+    </div>
+    </div>
+  </div>
+</div><!--footer--> 
 
 
 

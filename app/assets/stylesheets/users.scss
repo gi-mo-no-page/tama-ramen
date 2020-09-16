@@ -11,20 +11,36 @@
 .user-header {
   height: 300px;
   width: 100%;
-  
 }
+.user-header-area {
+  position: relative;
+}
+
+.user-contents-left {
+  position: absolute;
+  top: 40px;
+  left: 650px;
+  width: 30%;
+  height: 180px;
+  border: lightgray solid 2px;
+  padding: 20px;
+}
+
+
 .user-avatar {
-  text-align: center;
+  margin-left: 360px;
+  margin-bottom: 15px;
 }
 .user-nickname {
-  text-align: center;
-  font-size: 32px;
-  padding-top: 20px;
+  font-size: 20px;
+  // padding-top: 30px;
+  margin-left: 365px;
+
 }
 .user-edit {
   text-align: end;
   font-size: 16px;
-  padding-right: 50px;
+  padding-right: 40px;
   padding-top: 24px;
   margin-top: 24px;
 }
@@ -34,17 +50,17 @@
   background-color: rgb(250, 247, 230);
   display: flexbox;
 }
-.user-contents-left {
-  width: 50%;
-  height: 250px;
-  margin: 30px auto;
-  padding-top: 30px;
-  padding-left: 30px;
-  border: lightgray solid 2px;
+
+.user-post-title {
+  color: lightsalmon;
+  font-size: 32px;
+  margin-left: 100px;
+  margin-bottom: 40px;
+
 }
 
-.contents-item {
+.review-rate {
+  color: red;
+  font-weight: bold;
   font-size: 20px;
-  text-align: center;
 }
-
