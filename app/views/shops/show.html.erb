@@ -1,69 +1,132 @@
 <%= render "shared/header" %>
-<div class="show-box">
-  <div class="show-name">
+
+<div class="show-main">
+
+  <div class="show-main-extra">
   </div>
-  <div class="show-image">
+
+  <div class="show-main-top">
+  <div class="show-main-top-left">
+    <div class="show-name">
+      <%= @shop.name %>
+    </div>
+
+
+<% if @shop.reviews.present? %>
+  <div class="review-rate">
+    <%= @shop.reviews.average(:rate).floor(2) %>
   </div>
+<div id="star"></div><!--star-->
+  <script>
+  $('#star').raty({
+    size: 36,
+    starOff:  '<%= asset_path('star-off.png') %>',
+    starOn : '<%= asset_path('star-on.png') %>',
+    starHalf: '<%= asset_path('star-half.png') %>',
+    readOnly: true,
+    score: <%= @shop.reviews.average(:rate) %>,
+  });
+  </script> 
+<% else %>
+    <div class="review-rate">
+    
+    <%= image_tag asset_path('star-off.png'), class: '#' %>
+    <%= image_tag asset_path('star-off.png'), class: '#' %>
+    <%= image_tag asset_path('star-off.png'), class: '#' %>
+    <%= image_tag asset_path('star-off.png'), class: '#' %>
+    <%= image_tag asset_path('star-off.png'), class: '#' %>
+    0.0
+    <div class="no-review-sentense">
+    
+      *口コミ未投稿*
+    </div>
+    </div>
+
+<% end %>
+</div><!--show-main-top-left-->
+
+<div class="show-main-top-right">
+  <% if user_signed_in? %>
+    <div class="show-good">
+      <% if Good.find_by(user_id: current_user.id, shop_id: @shop.id) %>
+          <%= link_to(good_path(@shop.id),method: :delete) do %>
+            <i class="far fa-laugh-beam">お気に入り</i>
+          <% end %>
+      <% else %>
+          <%= link_to(shop_goods_path(@shop.id),method: :post) do %>
+            <i class="far fa-meh">検討中</i>
+          <% end %>
+      <% end %>
+    </div>
+
+    <div class="show-went">
+      <% if Went.find_by(user_id: current_user.id, shop_id: @shop.id) %>
+        <%= link_to(went_path(@shop.id),method: :delete) do %>
+          <i class="far fa-laugh-beam">行った</i>
+        <% end %>
+      <% else %>
+        <%= link_to(shop_wents_path(@shop.id),method: :post) do %>
+          <i class="far fa-meh">行ってない</i><br>
+        <% end %>
+      <% end %>
+    </div>
+  <% else%><!--sign-in?-->
+  <h6>※ログインしたらお店の管理や口コミができるよ※</h6>
+ <% end %><!--sign-in?-->
+
+</div><!--show-main-top-right-->
 
 
+</div><!--shwo-main-top-->
 
 
-</div>
+  <div class="show-main-bottom">
+    <div class="bottom-contents">
+      <div class="tab-bar">
+        <div class="shop-items1">
+        <a class="tab_btn is-active-btn" href="#item1">写真</a>
+        </div>
+        <div class="shop-items2">
+        <a class="tab_btn" href="#item2">地図</a>
+        </div>
+        <div class="shop-items3">
+        <a class="tab_btn" href="#item3">メニュー</a>
+        </div>
+        <div class="shop-items4">
+        <a class="tab_btn" href="#item4">口コミ</a>
+        </div>
+      </div><!--tab-bar-->
 
-<div class="">
-</div>
-<div class="">
-</div>
-<div class="">
-</div>
-<div class="">
-</div>
+      <div class="tab_item is-active-item" id="item1">
+        <%= image_tag @shop.image.variant(gravity: :center, resize:"150x150^", crop:"150x150+0+0").processed, class: '#' if @shop.image.attached? %>
+      </div>
+      <div class="tab_item" id="item2">
+      2番目のコンテンツ
+      </div>
+      <div class="tab_item" id="item3">
+      3番目のコンテンツ
+      </div>
+      <div class="tab_item" id="item4">
+      3番目のコンテンツ
+      </div>
 
 
-
-
-
-
-
-
-
-
-
+      
+    </div>
+  </div>
+</div><!--main-->
 
 
 <%
 =begin%>
- <%= image_tag @shop.image.variant(resize:'300x300'), class: '#' if @shop.image.attached? %>
-<h3><%= @shop.name %></h3>
+ 
+<h3></h3>
 <h5><%= @shop.text %></h5>
 <h5><%= @shop.category.name %></h5>
 
-<% if user_signed_in? %>
-  <% if Good.find_by(user_id: current_user.id, shop_id: @shop.id) %>
-      <%= link_to(good_path(@shop.id),method: :delete) do %>
-      <i class="far fa-laugh-beam">お気に入り</i>
-      <% end %>
-  <% else %>
-    <%= link_to(shop_goods_path(@shop.id),method: :post) do %>
-      <i class="far fa-meh">検討中</i>
-    <% end %>
-  <% end %>
+  <%= image_tag @shop.image.variant(gravity: :center, resize:"150x150^", crop:"150x150+0+0").processed, class: '#' if @shop.image.attached? %>
 
 
-
-
- <% if Went.find_by(user_id: current_user.id, shop_id: @shop.id) %>
-      <%= link_to(went_path(@shop.id),method: :delete) do %>
-      <i class="far fa-laugh-beam">行った</i>
-      <% end %>
-  <% else %>
-    <%= link_to(shop_wents_path(@shop.id),method: :post) do %>
-      <i class="far fa-meh">行ってない</i><br>
-    <% end %>
-  <% end %>
-  <% else%>
-  <h6>※ログインしたらお店の管理や口コミができるよ※</h6>
-<% end %>
  
 
 <% if @shop.reviews.present? %>

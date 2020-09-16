@@ -11,6 +11,7 @@ require("channels")
 require('../raty')
 require('../preview')
 require('../search')
+require('../tab')
 import 'bootstrap';
 import '../stylesheets/application';
 
