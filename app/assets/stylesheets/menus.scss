@@ -1,3 +1,80 @@
 // Place all the styles related to the menus controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.menus-area {
+  display: flex;
+}
+
+.menus-lists {
+  width: 50%;
+  height: 550px;
+  margin-top: 36px;
+  // background-color: lightgray;
+}
+
+.menus-new {
+  width: 100%;
+  height: 350px;
+  background-color: linen;
+  padding:24px ;
+}
+
+.menus-title {
+  font-size: 24px;
+  width: 310px;
+  background-color: lightgray;
+  color: rgb(73, 54, 54);
+  text-align: center;
+  padding: 10px;
+  margin: 72px auto 24px auto;
+}
+
+.menus-sub-title {
+  font-size: 24px;
+  width: 310px;
+  background-color: lightgray;
+  color: rgb(73, 54, 54);
+  padding:10px ;
+  margin-left:200px;
+  text-align: center;
+  margin-top: 36px;
+
+}
+
+.menus-lists-area {
+  width: 40%;
+  height: 70px;
+  margin: 24px auto;
+  display: flex;
+  justify-content: center;
+  border: yellowgreen solid 2px;
+}
+
+.menus-lists-name {
+  padding:16px;
+}
+
+.menus-lists-price {
+  padding:0 12px;
+
+}
+
+.field-input-menu {
+  padding: 10px 42px;
+}
+
+.menu-buttum {
+  margin:30px 45px;
+}
+
+.show-back-path {
+  color: darksalmon;
+  font-size: 24px;
+  margin-left: 240px;
+  margin-top: 40px;
+}
+
+.no-menu {
+  text-align: center;
+  font-size: 24px;
+}

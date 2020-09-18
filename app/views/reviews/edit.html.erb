@@ -1,24 +1,43 @@
-<%= form_with model: [@shop,@review], url: review_path, method: :patch, local: true do |f| %>
+<%= render "shared/header" %>
+
+<div class="review-new-area">
+
+<%= link_to(shop_path(@review.shop)) do %>
+<i class="fas fa-backward show-reviewback-path">もどる</i>
+<% end %>
+
+
+
+<div class="review-form">
+<div class="review-title">口コミの投稿</div>
+<%= form_with model: [@shop,@review], url: review_path, local: true do |f| %>
 <%= render 'shared/error_messages', model: f.object %>
 
   <div class='field-label'>
     <%= f.label :タイトル %>
   </div>
-  <div class='field-input'>
-    <%= f.text_field :title, autofocus: true%>
+  <div class=''>
+    <%= f.text_field :title, autofocus: true, class: "review-field-input"%>
   </div>
   <div class='field-label'>
     <%= f.label :内容 %>
   </div>
-  <div class='field-input'>
-    <%= f.text_area :text, autofocus: true%>
+  <div class='review-field-input'>
+    <%= f.text_area :text, autofocus: true, class: "review-field-text"%>
   </div>
+
+
+<div class="star-button">
+
+  <div class='actions'>
+    <%= f.submit "更新する", class: 'review-submit btn btn-success'%>
+  </div>
+
 
   <div class="field" id="star">
     <%= f.label :評価： %>
     <%= f.hidden_field :rate, id: :review_star %>
   </div>
-    <%= f.hidden_field :shop_id %>
 
  <script>
   window.onload = function(){ 
@@ -35,12 +54,12 @@
   </script> 
 
 
-  <div class='actions'>
-    <%= f.submit "編集する", class: '#'%>
+  <div>
+</div>
+  
   </div>
-
 <% end %>
 
-<%= link_to(root_path) do %>
-<i class="fas fa-home"></i>
-<% end %>
+  </div>
+</div>
+<%= render "shared/footer" %>

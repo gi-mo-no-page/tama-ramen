@@ -1,7 +1,7 @@
 class WentsController < ApplicationController
   def index
     @user = current_user
-    @wents = @user.wents.includes(:shop)
+    @wents = @user.wents.includes(:shop).page(params[:page]).per(5)
   end
 
   def create

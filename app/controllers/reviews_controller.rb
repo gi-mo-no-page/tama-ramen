@@ -14,7 +14,7 @@ class ReviewsController < ApplicationController
   def create
     @review = Review.new(review_params)
     if  @review.save
-      redirect_to shop_reviews_path
+      redirect_to shop_path(@review.shop.id)
     else
       render :new
     end
@@ -22,13 +22,13 @@ class ReviewsController < ApplicationController
 
   def edit
     @review = Review.find(params[:id])
+    @shop = @review.shop
   end
 
   def update
     @review = Review.find(params[:id])
-    @shop = @review.shop
     if @review.update(edit_params)
-      redirect_to shop_reviews_path(@shop.id)
+      redirect_to shop_path(@review.shop.id)
     else
       render :edit
     end
@@ -38,7 +38,7 @@ class ReviewsController < ApplicationController
     @review = Review.find(params[:id])
     @shop = @review.shop
     if @review.destroy
-      redirect_to shop_reviews_path(@shop.id)
+      redirect_to shop_path(@shop.id)
     else
       render :show
     end
@@ -52,7 +52,7 @@ class ReviewsController < ApplicationController
     params.require(:review).permit(:title, :text, :rate).merge(user_id: current_user.id, shop_id: params[:shop_id])
   end
   def edit_params
-    params.require(:review).permit(:title, :text, :rate)
+    params.require(:review).permit(:id,:title, :text, :rate)
   end
 
 

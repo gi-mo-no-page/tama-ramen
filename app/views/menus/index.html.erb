@@ -1,41 +1,67 @@
-  <h3>メニューです</h3>
-  
- <% if @menus.present? %>
-    <% @menus.each do |menu| %>
-      <h5><%= menu.name %></h5>
-      <h5><%= menu.price %></h5>
-      <% if user_signed_in? && current_user.id == @shop.user.id %>
-        <%= link_to  "削除", menu_path(menu.id), method: :delete,data: { confirm: '削除しますか？' }%>
-      <% end %>
-    <% end %>
-  <% end %> 
-  <br>
-<%= link_to  "戻る", shop_path(@shop.id) %>
-<br>
-<% if user_signed_in? && current_user.id == @shop.user.id %>
-  <p>メニューの登録</p>
+  <%= render "shared/header" %>
 
-   <%= form_with model: [@shop,@menu], url: shop_menus_path, local: true do |f| %>
+  
+  <div class="menus-area">
+   
+    <div class="menus-lists">
+        <div class="menus-sub-title">登録されているメニュー</div>
+
+       <% if @menus.present? %>
+         <% @menus.each do |menu| %>
+
+         <div class="menus-lists-area">
+            <div class="menus-lists-name">
+              <%= menu.name %>
+              ¥<%= menu.price %>
+        <%= link_to (menu_path(menu.id)), method: :delete,data: { confirm: '削除しますか？' } do %>
+        <i class="far fa-trash-alt"></i>
+        <% end %>
+            </div>
+            <div class="menus-lists-price">
+            </div>
+          </div>
+         <% end %>
+         <% else %>
+         <div class="no-menu">メニューが未登録です</div>
+      <% end %> 
+      <%= link_to(shop_path(@shop.id)) do %>
+        <i class="fas fa-backward show-back-path">もどる</i>
+      <% end %>
+
+    </div>
+<div class="menus-new-area">
+  <div class="menus-title">メニュー登録</div>
+
+<div class="menus-new">
+ <%= form_with model: [@shop,@menu], url: shop_menus_path, local: true do |f| %>
    
    <%= render 'shared/error_messages', model: f.object %>
 
   <div class='field-label'>
     <%= f.label :メニュー名 %>
   </div>
-  <div class='field-input'>
-    <%= f.text_field :name, autofocus: true%>
+  <div class='field-input-menu'>
+    <%= f.text_field :name, autofocus: true, class: "field-input-menu"%>
   </div>
 
   <div class='field-label'>
     <%= f.label :値段 %>
   </div>
-  <div class='field-input'>
-    <%= f.text_area :price, autofocus: true%>
+  <div class='field-input-menu'>
+    <%= f.text_field :price, autofocus: true, class: "field-input-menu"%> 円
   </div>
 
   <div class='actions'>
-    <%= f.submit "登録", class: ''%>
+    <%= f.submit "登録", class: 'btn btn-primary menu-buttum'%>
   </div>
 
   <% end %>
-<% end %> 
+
+    </div>
+   </div>
+</div>
+
+
+
+
+<%= render "shared/footer" %>

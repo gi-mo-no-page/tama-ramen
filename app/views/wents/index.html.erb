@@ -1,11 +1,103 @@
-<h3>行った店</h3>
+<%= render "shared/header" %>
+<div class="good-main">
+ <div class="results-area-title">
+    お気に入り一覧
+  </div>
+          <%= link_to(root_path) do %>
+            <i class="fas fa-home root-path">TOPへ</i>
+          <% end %>
 
-  <% if @wents.length != 0 %>
-    <% @wents.each do |went| %>
-      <%= link_to went.shop.name, shop_path(went.shop.id) %>
-      <%= image_tag went.shop.image.variant(resize:'150x150'), class: '#' if went.shop.image.attached? %>
-      <h5><%= went.shop.text %></h5>
-      <h5><%= went.shop.category.name %></h5>
-    <% end %>
-  <% end %>
+
+    <div class="paginate">
+      <%= paginate(@wents) %>
+    </div>
+    
+
+  <% if @wents.length !=0 %>
+      <% @wents.each do |went| %>
+  <div class="results-contents">
+    <div class="results-contents-left">
+
+        <div class="result-image">
+          <%= image_tag went.shop.image.variant(gravity: :center, resize:"150x150^", crop:"150x150+0+0").processed, class: '#' if went.shop.image.attached? %>
+        </div>
+    </div><!--left-->
+
+      <div class="results-contents-right">
+
+      <div class="right-top">
+        <div class="result-name">
+          <%= link_to went.shop.name, shop_path(went.shop_id), class: "result-name-link" %>
+        </div>
+        <div class="result-category-name">
+          カテゴリー：<%= went.shop.category.name %>
+        </div>
+
+
+
+
+      </div><!--right-top-->
+
+      <div class="right-bottom">
+
+        <div class="result-rate">
+          <% if went.shop.reviews.present? %>
+            <div class="review-rate">
+            <%= went.shop.reviews.average(:rate).floor(2) %>
+            </div>
+              <div id="star-<%= went.shop.id %>"></div><!--star-->
+                <script>
+                $('#star-<%= went.shop.id %>').raty({
+                  size: 36,
+                  starOff:  '<%= asset_path('star-off.png') %>',
+                  starOn : '<%= asset_path('star-on.png') %>',
+                  starHalf: '<%= asset_path('star-half.png') %>',
+                  readOnly: true,
+                  score: <%= went.shop.reviews.average(:rate) %>,
+                });
+                </script>
+            
+          <% else %>
+              <div class="review-rate">
+               0.0
+              </div>
+                <div id="star-<%= went.shop.id %>"></div><!--star-->
+                <script>
+                $('#star-<%= went.shop.id %>').raty({
+                  size: 36,
+                  starOff:  '<%= asset_path('star-off.png') %>',
+                  starOn : '<%= asset_path('star-on.png') %>',
+                  starHalf: '<%= asset_path('star-half.png') %>',
+                  readOnly: true,
+                  score: <%= 0.0 %>,
+                });
+                </script>
+                <span class="no-review-sentense">*口コミ未投稿*</span>
+          <% end %>
+        </div>
+
+        <div class="result-text">
+          <div class="shop-owner-comment"><i class="fas fa-address-card"></i>  お店投稿者のコメント</div>
+          <%= went.shop.text %>
+        </div>
+
+      </div><!--right-bottom-->
+
+      </div><!--right-->
+  </div><!--results-contents-->
+
+      <% end %><!--each-->
+    <% else %>
+    <div class="nothig">
+      該当する商品はありません
+    </div>
+    <% end %><!---if-length-->
+
+</div><!--results-area-->
+    <span class="paginate">
+      <%= paginate(@wents) %>
+    </span>
+  </div> 
+</div>
+
 

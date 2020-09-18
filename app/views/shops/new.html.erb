@@ -1,41 +1,65 @@
+<div class="shop-input">
+  <div class="items-sell-main">
+    <h2 class="items-sell-title">お店の情報を入力</h2>
+
 <%= form_with model: @shop, local: true do |f| %>
 
 <%= render 'shared/error_messages', model: f.object %>
 
-  <div class='field-label'>
-    <%= f.label :写真 %>
+
+
+<div class="img-upload">
+  <div class="weight-bold-text">
+    お店の画像
+    <span class="indispensable">必須</span>
   </div>
-  <div class='field-input'>
+  <div class="click-upload">
+    <p>
+      クリックしてファイルをアップロード
+    </p>
     <%= f.file_field :image, id:"image" %>
     <div id="image-list"></div>
   </div>
-  <div class='field-label'>
-    <%= f.label :店名 %>
+</div>
+<div class="new-items">
+  <div class="weight-bold-text">
+    お店の名前
+    <span class="indispensable">必須</span>
   </div>
-  <div class='field-input'>
-    <%= f.text_field :name, autofocus: true%>
+  <%= f.text_area :name, class:"items-text", id:"item-name", placeholder:"（必須 40文字まで)", maxlength:"40" %>
+  <div class="items-explain">
+    <div class="weight-bold-text">
+      お店の紹介文
+      <span class="indispensable">必須</span>
+    </div>
+    <%= f.text_area :text, class:"items-text", id:"item-info", placeholder:"（必須 1,000文字まで）" ,rows:"7" ,maxlength:"1000" %>
   </div>
-  <div class='field-label'>
-    <%= f.label :紹介文 %>
-  </div>
-  <div class='field-input'>
-    <%= f.text_area :text, autofocus: true%>
-  </div>
-  <div class='field-label'>
-    <%= f.label :ジャンル %>
-  </div>
-  <div class='field-input'>
-  <%= f.select :category_id, [['しょうゆ', 1], ['みそ', 2], ['とんこつ', 3],['しお', 4],['つけ麺', 5],['担々麺', 6],['油そば', 7],['家系', 8],['二郎系', 9],['その他', 10]], {include_blank: '選択ボックス'}, 
-class: 'sample' %>
-  </div>
-  <div class='field-label'>
-    <%= f.label :住所 %>
-  </div>
-  <div class='field-input'>
-    <%= f.text_field :address, autofocus: true%>
-  </div>
-  <div class='actions'>
-    <%= f.submit "登録", class: 'btn'%>
-  </div>
+</div>
+<div class="items-detail">
+  <div class="form">
+    <div class="weight-bold-text">
+      カテゴリー
+      <span class="indispensable">必須</span>
+    </div>
+      <%= f.select :category_id, [['しょうゆ', 1], ['みそ', 2], ['とんこつ', 3],['しお', 4],['つけ麺', 5],['担々麺', 6],['油そば', 7],['家系', 8],['二郎系', 9],['その他', 10]], {include_blank: '選択ボックス'}, 
+     class: 'select-box' %>
 
+  </div>
+</div>
+<div class="new-items">
+  <div>
+    <div class="weight-bold-text">
+    お店の住所
+    <span class="indispensable">必須</span>
+   </div>
+    <%= f.text_area :address, class:"items-text", id:"item-name", placeholder:"例）◯◯市△△町1-2-3", maxlength:"40" %>
+
+  </div>
+</div>
+    <div class="sell-btn-contents">
+      <%= f.submit "投稿する" ,class:"sell-btn" %>
+      <%=link_to 'もどる', root_path, class:"back-btn" %>
+    </div>
+</div>
 <% end %>
+</div>

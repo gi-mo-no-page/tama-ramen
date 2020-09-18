@@ -6,7 +6,7 @@ ja:
        avatar: 写真
      shop:
        name: 店名
-       text: テキスト
+       text: 紹介文
        image: 画像
        address: 住所
        category: カテゴリー

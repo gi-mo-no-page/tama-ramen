@@ -21,6 +21,8 @@ class ShopsController < ApplicationController
 
   def show
     @shop =Shop.find(params[:id])
+    @menus = @shop.menus.includes(:user)
+    @reviews = @shop.reviews.includes(:user)
   end
 
   def edit 

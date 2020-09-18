@@ -1,22 +1,24 @@
 <%= render "shared/header" %>
 
-    <div class="user-contents-list">
-      <div class="contents-item1">
-          クチコミ数：<%= @reviews.count %>
-        <%= link_to  "お気に入り", shop_goods_path(@user) %>
-        ：<%= @goods.count %>
-        <%= link_to  "行ったお店", shop_wents_path(@user) %>
-        ：<%= @wents.count %>
-      <div> 
-    </div>
-
 <div class="user-main">
   <div class="user-header">
    <div class="user-header-area ">
 
     <div class="user-edit">
-      <%= link_to "アカウントの編集", edit_user_path(current_user.id) %>
-      <%= link_to  "TOPへ", root_path %>
+
+        <div class="contents-item1">
+          <div>クチコミ数 ：<%= @reviews.count %></div>
+          <div><%= link_to  "お気に入り", shop_goods_path(@user) %>
+        ：<%= @goods.count %></div>
+        <div><%= link_to  "行ったお店", shop_wents_path(@user) %>
+        ：<%= @wents.count %></div>
+        </div> 
+
+      <div class="user-contents-list">
+      <div><%= link_to "アカウントの編集", edit_user_path(current_user.id) %></div>
+      <div><%= link_to  "TOPへ", root_path %></div>
+      </div> 
+
     </div>
 
 

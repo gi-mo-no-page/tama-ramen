@@ -181,9 +181,9 @@
     </div><!--category-->
 
       <div class="posts">
-        <h6 class="list-title">新しい投稿から探す</h6>
+        <h6 class="list-title">新しい投稿から探す <%= link_to  "全てのお店を見る", "/shops/search?q%5Baddress_cont%5D=" ,class: "area-title"%>
+</h6>
           <div class="">
-            <%= link_to  "全てのお店を見る", "/shops/search?q%5Baddress_cont%5D=" ,class: "area-title"%>
           </div>
         <div class="new-posts">
           <% if @shops.length != 0 %>
@@ -222,7 +222,7 @@
                 <%= image_tag asset_path('star-off.png'), class: '#' %>
                 <%= image_tag asset_path('star-off.png'), class: '#' %>
                 <%= image_tag asset_path('star-off.png'), class: '#' %><br>
-                *口コミ未投稿*<br>
+                <span class="no-review-sentense">*口コミ未投稿*</span>
           <% end %>
           </div>
               </div>

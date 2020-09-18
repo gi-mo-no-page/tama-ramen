@@ -2,7 +2,7 @@ class GoodsController < ApplicationController
 
   def index
     @user = current_user
-    @goods = @user.goods.includes(:shop)
+    @goods = @user.goods.includes(:shop).page(params[:page]).per(5)
   end
 
   def create

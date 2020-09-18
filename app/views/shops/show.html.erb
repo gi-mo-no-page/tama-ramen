@@ -3,6 +3,17 @@
 <div class="show-main">
 
   <div class="show-main-extra">
+      <div>
+      <%= link_to(root_path) do %>
+        <i class="fas fa-home show-root-path">TOPへ</i>
+      <% end %>
+      </div>
+      <div class="show-edit-destroy">
+      <% if user_signed_in? && current_user.id == @shop.user.id %>
+        <%= link_to  "編集", edit_shop_path, class: "show-edit" %>
+        <%= link_to  "削除", shop_path, method: :delete,data: { confirm: '削除しますか？' }, class: "show-destroy" %>
+     <% end %>
+     </div>
   </div>
 
   <div class="show-main-top">
@@ -11,11 +22,8 @@
       <%= @shop.name %>
     </div>
 
-
 <% if @shop.reviews.present? %>
-  <div class="review-rate">
-    <%= @shop.reviews.average(:rate).floor(2) %>
-  </div>
+<div class="review-star-area">
 <div id="star"></div><!--star-->
   <script>
   $('#star').raty({
@@ -27,34 +35,45 @@
     score: <%= @shop.reviews.average(:rate) %>,
   });
   </script> 
+
+    <div class="review-rate">
+    <%= @shop.reviews.average(:rate).floor(2) %>
+    </div>
+
+</div>
 <% else %>
     <div class="review-rate">
     
-    <%= image_tag asset_path('star-off.png'), class: '#' %>
-    <%= image_tag asset_path('star-off.png'), class: '#' %>
-    <%= image_tag asset_path('star-off.png'), class: '#' %>
-    <%= image_tag asset_path('star-off.png'), class: '#' %>
-    <%= image_tag asset_path('star-off.png'), class: '#' %>
+      <%= image_tag asset_path('star-off.png'), class: '#' %>
+      <%= image_tag asset_path('star-off.png'), class: '#' %>
+      <%= image_tag asset_path('star-off.png'), class: '#' %>
+      <%= image_tag asset_path('star-off.png'), class: '#' %>
+      <%= image_tag asset_path('star-off.png'), class: '#' %>
     0.0
     <div class="no-review-sentense">
-    
       *口コミ未投稿*
     </div>
     </div>
-
+    
 <% end %>
 </div><!--show-main-top-left-->
 
 <div class="show-main-top-right">
+
+  <span class="shop-show-catrgory">
+    カテゴリー：<%= @shop.category.name %>
+  </span>
+
+
   <% if user_signed_in? %>
     <div class="show-good">
       <% if Good.find_by(user_id: current_user.id, shop_id: @shop.id) %>
           <%= link_to(good_path(@shop.id),method: :delete) do %>
-            <i class="far fa-laugh-beam">お気に入り</i>
+            <i class="far fa-laugh-beam check">お気に入り</i>
           <% end %>
       <% else %>
           <%= link_to(shop_goods_path(@shop.id),method: :post) do %>
-            <i class="far fa-meh">検討中</i>
+            <i class="far fa-meh no-check">検討中</i>
           <% end %>
       <% end %>
     </div>
@@ -62,18 +81,24 @@
     <div class="show-went">
       <% if Went.find_by(user_id: current_user.id, shop_id: @shop.id) %>
         <%= link_to(went_path(@shop.id),method: :delete) do %>
-          <i class="far fa-laugh-beam">行った</i>
+          <i class="far fa-laugh-beam check">行った</i>
         <% end %>
       <% else %>
         <%= link_to(shop_wents_path(@shop.id),method: :post) do %>
-          <i class="far fa-meh">行ってない</i><br>
+          <i class="far fa-meh no-check">行ってない</i><br>
         <% end %>
       <% end %>
     </div>
   <% else%><!--sign-in?-->
-  <h6>※ログインしたらお店の管理や口コミができるよ※</h6>
+  <h6>※ログインするとお店の管理や口コミができます※</h6>
  <% end %><!--sign-in?-->
 
+    <div class="sns-icon">
+    
+      <%= link_to "https://twitter.com/share?url=#{request.url}", title: 'Twitter', target: '_blank' do %>
+      <i class="fab fa-twitter-square fa-2x"></i>
+    <% end %> 
+    </div>
 </div><!--show-main-top-right-->
 
 
@@ -84,10 +109,11 @@
     <div class="bottom-contents">
       <div class="tab-bar">
         <div class="shop-items1">
-        <a class="tab_btn is-active-btn" href="#item1">写真</a>
+        <a class="tab_btn is-active-btn" href="#item1">TOP</a>
         </div>
         <div class="shop-items2">
         <a class="tab_btn" href="#item2">地図</a>
+        
         </div>
         <div class="shop-items3">
         <a class="tab_btn" href="#item3">メニュー</a>
@@ -98,17 +124,154 @@
       </div><!--tab-bar-->
 
       <div class="tab_item is-active-item" id="item1">
-        <%= image_tag @shop.image.variant(gravity: :center, resize:"150x150^", crop:"150x150+0+0").processed, class: '#' if @shop.image.attached? %>
+        <%= image_tag @shop.image.variant(gravity: :center, resize:"600x400^", crop:"600x400+0+0").processed, class: 'show-shop-image' if @shop.image.attached? %>
+        <div class="show-owner-comment"><i class="fas fa-address-card"></i>  お店投稿者：<%= @shop.user.nickname%>さん</div>
+        <div class="show-shop-text border border-dark">
+          <%= @shop.text %>
+        </div>
       </div>
       <div class="tab_item" id="item2">
-      2番目のコンテンツ
+      <div class="shop-address">
+      <%= @shop.address %>
       </div>
-      <div class="tab_item" id="item3">
-      3番目のコンテンツ
+      <div class="map" id="map"></div>
+        <script type="text/javascript">
+  function initMap() {
+
+    let point ={lat: <%= @shop.latitude %>, lng: <%= @shop.longitude %>};
+    let map = new google.maps.Map(document.getElementById('map'), {
+              zoom: 15, 
+              center: point
+              });
+    let transitLayer = new google.maps.TransitLayer();
+    transitLayer.setMap(map);
+
+    let contentString = '住所：<%= @shop.address %>';
+    let infowindow = new google.maps.InfoWindow({
+      content: contentString
+    });
+
+    let marker = new google.maps.Marker({
+                  position:point,
+                  map: map,
+                  title: contentString
+                 });
+
+     marker.addListener('click', function() {
+       infowindow.open(map, marker);
+     });
+  }
+</script>
+
+<script async defer
+              src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap">
+</script>
+
+
       </div>
-      <div class="tab_item" id="item4">
-      3番目のコンテンツ
+      <div class="tab_item menu-area" id="item3">
+
+         <% if @menus.length != 0 %>
+            <div class="shop-menu-top">
+              メニュー
+            </div>
+            <% @menus.each do |menu| %>
+            <div class="menu-list">
+            <div class="menu-name">
+            <%= menu.name %>
+            </div>
+            <div class="menu-price">
+             ¥<%= menu.price %>
+            </div>
+            </div>
+            <% end %>
+    <% if user_signed_in? && current_user.id == @shop.user.id %>
+        <div class="menu-new-link">
+        <%= link_to  "メニューの登録",  shop_menus_path(@shop), class: "menu-new" %>
+        </div>
+     <% end %>
+
+        <% else %>
+            <p class="show-no-menu">メニューが登録されていません。</p>
+            <% if user_signed_in? && current_user.id == @shop.user.id %>
+            <div class="menu-new-link">
+            <%= link_to  "メニューの登録",  shop_menus_path(@shop), class: "menu-new" %>
+            </div>
+     <% end %>
+
+        <% end %>
       </div>
+
+      <div class="tab_item overflow-auto" id="item4">
+        <div class="review-bottum-area">
+          <%= link_to  "口コミする", new_shop_review_path(@shop), class: "review-button btn btn-primary" %>
+        </div>
+  <% if @reviews.length != 0 %>
+    <% @reviews.each do |review| %>
+  <div class="reviews-area">
+    <div class="review-rate-content">
+      <div class="review-rate-area">
+
+        <div class="review-user-avatar">
+          <% if review.user.avatar.attached? %>
+            <%= image_tag review.user.avatar.variant(gravity: :center, resize:"50x50^", crop:"50x50+0+0").processed  %>
+          <% else %>
+            <%= image_tag(asset_path('noimage.png'), :size => "50x50") %>
+          <% end %>
+        <div class="review-user-nickname">
+          <%= review.user.nickname %>さん
+        </div>
+       </div>
+        <div class="review-rate-area-star">
+        <div id="star-<%= review.id %>" class="star"></div><!--star-->
+          <script>
+          $('#star-<%= review.id %>').raty({
+            size: 36,
+            starOff:  '<%= asset_path('star-off.png') %>',
+            starOn : '<%= asset_path('star-on.png') %>',
+            starHalf: '<%= asset_path('star-half.png') %>',
+            readOnly: true,
+            score: <%= review.rate %>,
+          });
+          </script>
+        <div class="review-comment-rate"><%= review.rate %></div>
+
+      <div class="review-edit">
+      <% if user_signed_in? && current_user.id == review.user.id %>
+        <div>
+        <%= link_to (edit_review_path(review.id)) do %>
+        <i class="fas fa-edit"></i>
+        <% end %>
+        </div>
+
+        <div>
+        <%= link_to (review_path(review.id)), method: :delete,data: { confirm: '削除しますか？' } do %>
+        <i class="far fa-trash-alt"></i>
+        <% end %>
+        
+        </div>
+    <% end %>
+      </div>
+    </div>
+  </div>
+
+
+      <div class="reviews-contents">
+        <div class="reviews-contents-title">
+          <%= review.title %>
+        </div>
+        <div class="reviews-contents-comment">
+          <%= review.text %>
+        </div>
+      </div>
+      
+    </div>
+    <% end %>
+    <% else %>
+    <div class="no-review">口コミがまだありません</div>
+  <% end %>
+  </div>
+</div>
 
 
       
@@ -117,59 +280,3 @@
 </div><!--main-->
 
 
-<%
-=begin%>
- 
-<h3></h3>
-<h5><%= @shop.text %></h5>
-<h5><%= @shop.category.name %></h5>
-
-  <%= image_tag @shop.image.variant(gravity: :center, resize:"150x150^", crop:"150x150+0+0").processed, class: '#' if @shop.image.attached? %>
-
-
- 
-
-<% if @shop.reviews.present? %>
-<div class="review-rate">
-  <%= @shop.reviews.average(:rate).floor(2) %>
-</div>
-<div id="star"></div><!--star-->
-  <script>
-  $('#star').raty({
-    size: 36,
-    starOff:  '<%= asset_path('star-off.png') %>',
-    starOn : '<%= asset_path('star-on.png') %>',
-    starHalf: '<%= asset_path('star-half.png') %>',
-    readOnly: true,
-    score: <%= @shop.reviews.average(:rate) %>,
-  });
-  </script> 
-<% else %>
-    <span class="review-rate">
-    0.0
-    </span><br>
-    <%= image_tag asset_path('star-off.png'), class: '#' %>
-    <%= image_tag asset_path('star-off.png'), class: '#' %>
-    <%= image_tag asset_path('star-off.png'), class: '#' %>
-    <%= image_tag asset_path('star-off.png'), class: '#' %>
-    <%= image_tag asset_path('star-off.png'), class: '#' %><br>
-    *口コミ未投稿*<br>
-
-<% end %>
-
-
-<%= link_to  "メニュー", shop_menus_path(@shop) %>
-<%= link_to  "口コミ", shop_reviews_path(@shop) %>
-<%= link_to  "Mapへ", shop_maps_path(@shop) %>
-
-<% if user_signed_in? && current_user.id == @shop.user.id %>
-  <%= link_to  "編集", edit_shop_path %>
-  <%= link_to  "削除", shop_path, method: :delete,data: { confirm: '削除しますか？' } %>
-<% end %>
-<%= link_to(root_path) do %>
-<i class="fas fa-home"></i>
-<% end %> 
-<%
-=end%>
-
-<%= render "shared/footer" %>

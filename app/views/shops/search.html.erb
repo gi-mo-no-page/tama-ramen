@@ -34,27 +34,36 @@
           カテゴリー：<%= result.category.name %>
         </div>
 
+  <% if user_signed_in? %>
+        <div>
+          <% if Good.find_by(user_id: current_user.id, shop_id: result.id) %>
+              <%= link_to(shop_path(result.id)) do %>
+              <i class="far fa-laugh-beam check">お気に入り</i>
+              <% end %>
+          <% else %>
+              <%= link_to(shop_path(result.id)) do %>
+                <i class="far fa-meh no-check">検討中</i>
+              <% end %>
+          <% end %>
+
+
 
        <% if Went.find_by(user_id: current_user.id, shop_id: result.id) %>
             <%= link_to(shop_path(result.id)) do %>
-              <i class="far fa-laugh-beam">行った</i>
+              <i class="far fa-laugh-beam check">行った</i>
             <% end %>
       <% else %>
             <%= link_to(shop_path(result.id)) do %>
-               <i class="far fa-meh">行ってない</i><br>
+               <i class="far fa-meh no-check">行ってない</i><br>
             <% end %>
       <% end %>
+    </div>
 
 
-    <% if Good.find_by(user_id: current_user.id, shop_id: result.id) %>
-      <%= link_to(shop_path(result.id)) do %>
-      <i class="far fa-laugh-beam">お気に入り</i>
-      <% end %>
+
   <% else %>
-      <%= link_to(shop_path(result.id)) do %>
-        <i class="far fa-meh">検討中</i>
-      <% end %>
-  <% end %>
+    <h6>※ログインするとお店の管理や口コミができます※</h6>
+<% end %>
 
 
 
@@ -94,7 +103,7 @@
                   score: <%= 0.0 %>,
                 });
                 </script>
-                *口コミなし*
+                <span class="no-review-sentense">*口コミ未投稿*</span>
           <% end %>
         </div>
 

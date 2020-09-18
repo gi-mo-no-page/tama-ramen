@@ -1,3 +1,45 @@
 // Place all the styles related to the reviews controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.review-new-area {
+  width: 100%;
+  height:540px;
+}
+
+.review-form {
+  width: 60%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.review-title {
+  font-size: 24px;
+  width: 310px;
+  background-color: lightgray;
+  color: rgb(73, 54, 54);
+  padding:10px ;
+  margin-left: 275px;
+}
+
+.review-field-input {
+  padding: 6px 130px 6px 8px;
+
+}
+.review-field-text {
+  padding: 8px 130px 64px 8px;
+  margin-left:120px;
+
+}
+
+.show-reviewback-path {
+  color: lightsalmon;
+  margin-top:30px;
+}
+.star-button {
+  display: flex;
+  justify-content: center;
+}
+
+.review-submit {
+  margin-right: 30px;
+}
