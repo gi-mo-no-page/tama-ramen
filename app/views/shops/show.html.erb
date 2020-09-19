@@ -73,19 +73,21 @@
           <% end %>
       <% else %>
           <%= link_to(shop_goods_path(@shop.id),method: :post) do %>
-            <i class="far fa-meh no-check">検討中</i>
+            <i class="far fa-smile no-check"></i>検討中</i>
           <% end %>
       <% end %>
     </div>
 
+    
+
     <div class="show-went">
       <% if Went.find_by(user_id: current_user.id, shop_id: @shop.id) %>
         <%= link_to(went_path(@shop.id),method: :delete) do %>
-          <i class="far fa-laugh-beam check">行った</i>
+          <i class="fas fa-user-check check">行った</i>
         <% end %>
       <% else %>
         <%= link_to(shop_wents_path(@shop.id),method: :post) do %>
-          <i class="far fa-meh no-check">行ってない</i><br>
+          <i class="fas fa-user-alt no-check">行ってない</i>
         <% end %>
       <% end %>
     </div>

@@ -2,7 +2,7 @@
 <div class ="results-area">
 
   <div class="results-area-title">
-    検索結果
+    店舗一覧
   </div>
           <%= link_to(root_path) do %>
             <i class="fas fa-home root-path">TOPへ</i>
@@ -38,11 +38,11 @@
         <div>
           <% if Good.find_by(user_id: current_user.id, shop_id: result.id) %>
               <%= link_to(shop_path(result.id)) do %>
-              <i class="far fa-laugh-beam check">お気に入り</i>
+              <i class="far fa-laugh-beam good-check">お気に入り</i>
               <% end %>
           <% else %>
               <%= link_to(shop_path(result.id)) do %>
-                <i class="far fa-meh no-check">検討中</i>
+                <i class="far fa-smile no-check">検討中</i>
               <% end %>
           <% end %>
 
@@ -50,11 +50,11 @@
 
        <% if Went.find_by(user_id: current_user.id, shop_id: result.id) %>
             <%= link_to(shop_path(result.id)) do %>
-              <i class="far fa-laugh-beam check">行った</i>
+              <i class="fas fa-user-check check">行った</i>
             <% end %>
       <% else %>
             <%= link_to(shop_path(result.id)) do %>
-               <i class="far fa-meh no-check">行ってない</i><br>
+               <i class="fas fa-user-alt no-check">行ってない</i><br>
             <% end %>
       <% end %>
     </div>

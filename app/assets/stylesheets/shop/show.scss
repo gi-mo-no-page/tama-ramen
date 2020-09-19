@@ -74,6 +74,16 @@
   font-size: 20px;
 }
 
+.good-check {
+  color: lightcoral;
+  font-size: 20px;
+}
+
+.good-no-check {
+  font-size: 20px;
+}
+
+
 .show-name {
   font-size: 28px;
 }
@@ -112,6 +122,7 @@
 .tab_btn {
   color:rgb(59, 27, 27);
   text-decoration-line: none;
+  padding: 16px 80px;
 }
 .tab_btn:hover {
   color: lightcoral;

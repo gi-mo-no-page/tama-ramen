@@ -11,6 +11,7 @@
       <div class="all-search-input">
         <div class="name-seach">
         <%= f.search_field :name_cont, placeholder:":お店の名前", class: "name-form " ,id: "form" %>
+
          </div>
         <div>
         <%= f.search_field :address_cont, placeholder:":エリア[ 例)多摩市 ]", class: "address", id: "address" %>
@@ -23,8 +24,8 @@
         </button>
         </div>
       <% end %>
-          <ul id="result", class="result">
-          </ul>
+
+
 
     <ul class='lists-right'>
       <% if user_signed_in? %>

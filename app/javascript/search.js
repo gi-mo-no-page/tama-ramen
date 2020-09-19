@@ -15,5 +15,14 @@
       $('#result').append('<li>' + name.name + '</li>')
     })
     
+    $('li').on('click', function(){
+      $(this).attr('id', 'result-li');
+      var text = $('#result-li').text();
+      console.log(text)
+      $('#form').val(text);
+      $('#result').empty();
+    });
+
+
   })
 });
