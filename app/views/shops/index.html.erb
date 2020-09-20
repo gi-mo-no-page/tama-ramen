@@ -37,8 +37,6 @@
   <div class="mypage">
 
   <% if user_signed_in? %>
-    <%
-=begin%>
  <div class="user-section">
       <% if @user.avatar.attached? %>
       <div class="user-image">
@@ -50,8 +48,6 @@
       </div>
       <% end %>
  
-<%
-=end%>
       <div class="usernickname-link">
         <%= link_to "#{current_user.nickname}さん", user_path(current_user.id), class: "usernickname-link" %>
       </div>
