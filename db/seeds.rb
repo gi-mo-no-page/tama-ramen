@@ -10,13 +10,13 @@
 # Menu.create(name: "ラーメン", price: 1100, shop_id: 2);
 # Menu.create(name: "とんこつラーメン", price: 900, shop_id: 3);
 # Menu.create(name: "醤油らーめん", price: 800, shop_id: 4);
-# Category.create(name:'しょうゆ')
-# Category.create(name:'みそ')
-# Category.create(name:'とんこつ')
-# Category.create(name:'しお')
-# Category.create(name:'つけ麺')
-# Category.create(name:'担々麺')
-# Category.create(name:'油そば')
-# Category.create(name:'家系')
-# Category.create(name:'二郎系')
-# Category.create(name:'その他')
+Category.create(name:'しょうゆ')
+Category.create(name:'みそ')
+Category.create(name:'とんこつ')
+Category.create(name:'しお')
+Category.create(name:'つけ麺')
+Category.create(name:'担々麺')
+Category.create(name:'油そば')
+Category.create(name:'家系')
+Category.create(name:'二郎系')
+Category.create(name:'その他')
