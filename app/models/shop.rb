@@ -1,9 +1,9 @@
 class Shop < ApplicationRecord
-  has_many :menus
-  has_many :reviews
-  has_many :goods
-  has_many :wents
-  has_one_attached :image
+  has_many :menus, dependent: :destroy
+  has_many :reviews, dependent: :destroy
+  has_many :goods, dependent: :destroy
+  has_many :wents, dependent: :destroy
+  has_one_attached :image, dependent: :destroy
   geocoded_by :address
   belongs_to :category
   belongs_to :user
