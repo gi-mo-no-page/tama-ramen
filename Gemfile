@@ -62,9 +62,7 @@ gem 'ransack'
 gem "gretel"
 gem 'jquery-rails'
 gem 'geocoder'
-group :development, :test do 
-    gem 'dotenv-rails', groups: [:development, :test]
-end
+gem 'dotenv-rails'
 gem 'mini_magick'
 gem 'image_processing', '~> 1.2'
 gem 'kaminari'
@@ -72,3 +70,4 @@ gem 'rails-i18n'
 group :production do
   gem 'rails_12factor'
 end
+gem "aws-sdk-s3", require: false

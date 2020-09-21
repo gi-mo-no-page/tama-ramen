@@ -194,7 +194,7 @@
             <% @shops.each do |shop| %>
               <div>
               <div class="shop-image">
-              <%= image_tag shop.image.variant(gravity: :center, resize:"120x120^", crop:"120x120+0+0").processed, class: '#' if shop.image.attached? %>
+                <%= image_tag shop.image.variant(gravity: :center, resize:"120x120^", crop:"120x120+0+0").processed, class: '#' if shop.image.attached? %> 
               </div>
               
               <div class="shop-info">

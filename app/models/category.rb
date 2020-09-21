@@ -1,5 +1,5 @@
 class Category < ApplicationRecord
-  has_many :shops, dependent: :destroy
+  has_many :shops
 
   validates :name, presence: true
 
