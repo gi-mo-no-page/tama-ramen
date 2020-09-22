@@ -50,5 +50,6 @@ test:
 production:
   <<: *default
   database: tama_ramen_production
-  username: tama_ramen
-  password: <%= ENV['TAMA_RAMEN_DATABASE_PASSWORD'] %>
+  username: root
+  password: <%= ENV['DATABASE_PASSWORD'] %>
+  socket: /var/lib/mysql/mysql.sock
