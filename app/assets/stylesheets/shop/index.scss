@@ -23,6 +23,9 @@ ul {
 //   border: lightgrey solid 2px;
 //   border-top: lightgrey solid 1px;
 // }
+.result-list-area {
+  margin-left: 140px;
+}
 
 .result {
   display: flex;
@@ -150,6 +153,7 @@ ul {
   display: flex;
   justify-content: center;
   padding-top: 80px;
+  padding-left: 140px;
 }
 .seach-input {
   width: 800px;
@@ -162,7 +166,7 @@ ul {
   border: lightslategrey solid 1px;
   padding:17px;
   position: absolute;
-  left:166px;
+  left:234px;
   top:79px;
 }
 .name-form, .address {
