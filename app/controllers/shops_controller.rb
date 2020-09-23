@@ -43,7 +43,7 @@ class ShopsController < ApplicationController
   end
 
   def search
-    @results = @p.result.includes(:category).order(created_at: :desc).page(params[:page]).per(5)
+    @results = @p.result.includes(:category).order(created_at: :desc).page(params[:page]).per(6)
   end
 
   def replay

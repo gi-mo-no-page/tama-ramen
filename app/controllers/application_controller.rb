@@ -15,7 +15,6 @@ class ApplicationController < ActionController::Base
   end
 
   def set_shop_column
-    @shop_genre = Shop.select('genre').distinct
     @shop_address = Shop.select('address').distinct
   end
 
