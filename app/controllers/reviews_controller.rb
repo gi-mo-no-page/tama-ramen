@@ -1,5 +1,7 @@
 class ReviewsController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_review, only: [:edit, :update, :destroy]
+
 
   def index
     @shop = Shop.find(params[:shop_id])
@@ -13,7 +15,7 @@ class ReviewsController < ApplicationController
 
   def create
     @review = Review.new(review_params)
-    if  @review.save
+    if @review.save
       redirect_to shop_path(@review.shop.id)
     else
       render :new
@@ -21,12 +23,10 @@ class ReviewsController < ApplicationController
   end
 
   def edit
-    @review = Review.find(params[:id])
     @shop = @review.shop
   end
 
   def update
-    @review = Review.find(params[:id])
     if @review.update(edit_params)
       redirect_to shop_path(@review.shop.id)
     else
@@ -35,26 +35,25 @@ class ReviewsController < ApplicationController
   end
 
   def destroy
-    @review = Review.find(params[:id])
     @shop = @review.shop
     if @review.destroy
       redirect_to shop_path(@shop.id)
     else
       render :show
     end
-
-
   end
 
-  
   private
+
   def review_params
     params.require(:review).permit(:title, :text, :rate).merge(user_id: current_user.id, shop_id: params[:shop_id])
   end
+
   def edit_params
-    params.require(:review).permit(:id,:title, :text, :rate)
+    params.require(:review).permit(:id, :title, :text, :rate)
   end
 
-
-
+  def set_review
+    @review = Review.find(params[:id])
+  end
 end

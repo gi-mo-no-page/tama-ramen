@@ -1,5 +1,4 @@
 class GoodsController < ApplicationController
-
   def index
     @user = current_user
     @goods = @user.goods.includes(:shop).page(params[:page]).per(5)
@@ -23,7 +22,5 @@ class GoodsController < ApplicationController
     )
     good.destroy
     redirect_to shop_path(@shop.id)
-
   end
-
 end

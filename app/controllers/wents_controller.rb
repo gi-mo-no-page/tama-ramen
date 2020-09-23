@@ -23,5 +23,4 @@ class WentsController < ApplicationController
     went.destroy
     redirect_to shop_path(@shop.id)
   end
-
 end

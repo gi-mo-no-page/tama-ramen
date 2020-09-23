@@ -6,5 +6,4 @@ class Good < ApplicationRecord
     validates :shop_id
     validates :user_id
   end
-
 end

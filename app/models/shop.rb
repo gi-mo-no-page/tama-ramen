@@ -17,7 +17,4 @@ class Shop < ApplicationRecord
     validates :category_id
     validates :user_id
   end
-
-
-
 end

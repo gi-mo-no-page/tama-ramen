@@ -1,15 +1,11 @@
 class UsersController < ApplicationController
+  before_action :set_user, only: [:edit, :show]
 
   def show
-    @user = User.find(params[:id])
     @reviews = @user.reviews.includes(:shop)
     @goods = @user.goods.includes(:shop)
     @wents = @user.wents.includes(:shop)
     @shops = @user.shops
-  end
-
-  def edit
-    @user = User.find(params[:id])
   end
 
 
@@ -22,8 +18,12 @@ class UsersController < ApplicationController
   end
 
   private
+
   def user_params
     params.require(:user).permit(:nickname, :email, :avatar, :text)
   end
 
+  def set_user
+    @user = User.find(params[:id])
+  end
 end

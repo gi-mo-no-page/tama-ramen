@@ -11,8 +11,7 @@ FactoryBot.define do
     association :category
 
     after(:build) do |shop|
-    shop.image.attach(io: File.open('public/images/test_image.png'), filename: 'test_image.png')
+      shop.image.attach(io: File.open('public/images/test_image.png'), filename: 'test_image.png')
     end
-    
   end
 end

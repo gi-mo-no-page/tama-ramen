@@ -1,4 +1,5 @@
 class ShopsController < ApplicationController
+  before_action :set_shop, only: [:edit, :update, :show, :destroy]
 
   def index
     @shops = Shop.all.order(created_at: :desc).limit(5)
@@ -12,7 +13,7 @@ class ShopsController < ApplicationController
   def create
     @shop = Shop.new(shop_params)
     if @shop.valid?
-       @shop.save
+      @shop.save
       redirect_to root_path
     else
       render :new
@@ -20,17 +21,12 @@ class ShopsController < ApplicationController
   end
 
   def show
-    @shop =Shop.find(params[:id])
     @menus = @shop.menus.includes(:user)
     @reviews = @shop.reviews.includes(:user)
   end
 
-  def edit 
-    @shop =Shop.find(params[:id])
-  end
 
-  def update 
-    @shop =Shop.find(params[:id])
+  def update
     if @shop.update(shop_params)
       redirect_to shop_path(@shop)
     else
@@ -38,8 +34,7 @@ class ShopsController < ApplicationController
     end
   end
 
-  def destroy 
-    @shop =Shop.find(params[:id])
+  def destroy
     if @shop.destroy
       redirect_to root_path
     else
@@ -47,20 +42,24 @@ class ShopsController < ApplicationController
     end
   end
 
-
   def search
     @results = @p.result.includes(:category).order(created_at: :desc).page(params[:page]).per(5)
   end
 
   def replay
-    return nil if params[:keyword] == ""
+    return nil if params[:keyword] == ''
+
     @name = Shop.where('name LIKE(?)', "%#{params[:keyword]}%")
     render json: @name
   end
 
   private
+
   def shop_params
-    params.require(:shop).permit(:name, :text, :address, :image,:category_id).merge(user_id: current_user.id)
+    params.require(:shop).permit(:name, :text, :address, :image, :category_id).merge(user_id: current_user.id)
   end
 
+  def set_shop
+    @shop = Shop.find(params[:id])
+  end
 end

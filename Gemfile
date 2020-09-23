@@ -79,3 +79,6 @@ group :development, :test do
   gem 'capistrano-rails'
   gem 'capistrano3-unicorn'
 end
+group :development do
+  gem 'rubocop', require: false
+end
