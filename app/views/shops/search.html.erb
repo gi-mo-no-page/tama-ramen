@@ -2,7 +2,7 @@
 <div class ="results-area">
 
   <div class="results-area-title">
-    店舗一覧
+    店舗一覧　[ 全<%= @results.count %>件 ]
   </div>
           <%= link_to(root_path) do %>
             <i class="fas fa-home root-path">TOPへ</i>
@@ -31,7 +31,7 @@
           <%= link_to result.name, shop_path(result.id), class: "result-name-link" %>
         </div>
         <div class="result-category-name">
-          カテゴリー：<%= result.category.name %>
+          ｶﾃｺﾞﾘｰ：<%= result.category.name %>
         </div>
 
   <% if user_signed_in? %>
@@ -87,7 +87,7 @@
                   score: <%= result.reviews.average(:rate) %>,
                 });
                 </script>
-            
+              <div><i class="far fa-comment-dots"></i> <%= result.reviews.count %></div>
           <% else %>
               <div class="review-rate">
                0.0
