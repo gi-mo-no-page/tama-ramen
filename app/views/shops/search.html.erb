@@ -2,7 +2,16 @@
 <div class ="results-area">
 
   <div class="results-area-title">
-    店舗一覧　[ 全<%= @results.count %>件 ]
+    <% if params[:q].present? && params[:q][:name_cont].present? %>
+         店舗名:「<%= params[:q][:name_cont] %>」
+    <% end  %>
+    <% if params[:q].present? && params[:q][:address_cont].present? %>
+         エリア:「<%= params[:q][:address_cont] %>」
+    <% end %>
+ <% if params[:q].present? && params[:q][:category_name_eq].present? %> 
+         カテゴリー:「<%= params[:q][:category_name_eq] %>」
+    <% end %>
+    店舗一覧　 全<%= @show_results.count %>件 
   </div>
           <%= link_to(root_path) do %>
             <i class="fas fa-home root-path">TOPへ</i>

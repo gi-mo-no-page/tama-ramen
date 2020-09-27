@@ -26,13 +26,13 @@
     お店の名前
     <span class="indispensable">必須</span>
   </div>
-  <%= f.text_area :name, class:"items-text", id:"item-name", placeholder:"（必須 40文字まで)", maxlength:"40" %>
+  <%= f.text_area :name, class:"items-text", id:"item-name", placeholder:"例）ラーメン本舗", maxlength:"40" %>
   <div class="items-explain">
     <div class="weight-bold-text">
       お店の紹介文
       <span class="indispensable">必須</span>
     </div>
-    <%= f.text_area :text, class:"items-text", id:"item-info", placeholder:"（必須 1,000文字まで）" ,rows:"7" ,maxlength:"1000" %>
+    <%= f.text_area :text, class:"items-text", id:"item-info", placeholder:"例）◯◯ラーメンがオススメです！" ,rows:"7" ,maxlength:"1000" %>
   </div>
 </div>
 <div class="items-detail">

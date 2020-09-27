@@ -9,8 +9,8 @@
       <% end %>
       </div>
       <div class="show-edit-destroy">
-        <%= link_to  "編集", edit_shop_path, class: "show-edit" %>
       <% if user_signed_in? && current_user.id == @shop.user.id %>
+        <%= link_to  "編集", edit_shop_path, class: "show-edit" %>
         <%= link_to  "削除", shop_path, method: :delete,data: { confirm: '削除しますか？' }, class: "show-destroy" %>
      <% end %>
      </div>
@@ -194,7 +194,10 @@
      <% end %>
 
         <% else %>
-            <p class="show-no-menu">メニューが登録されていません。</p>
+            <div class="shop-menu-top">
+              メニュー
+            </div>
+            <p class="show-no-menu">登録されていません</p>
             <% if user_signed_in? && current_user.id == @shop.user.id %>
             <div class="menu-new-link">
             <%= link_to  "メニューの登録",  shop_menus_path(@shop), class: "menu-new" %>
