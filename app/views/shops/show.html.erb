@@ -9,8 +9,8 @@
       <% end %>
       </div>
       <div class="show-edit-destroy">
-      <% if user_signed_in? && current_user.id == @shop.user.id %>
         <%= link_to  "編集", edit_shop_path, class: "show-edit" %>
+      <% if user_signed_in? && current_user.id == @shop.user.id %>
         <%= link_to  "削除", shop_path, method: :delete,data: { confirm: '削除しますか？' }, class: "show-destroy" %>
      <% end %>
      </div>
