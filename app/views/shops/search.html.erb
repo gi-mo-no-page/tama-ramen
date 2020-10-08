@@ -21,9 +21,9 @@
     <div class="paginate">
       <%= paginate(@results) %>
     </div>
-<%= sort_link(@p, :name, "name",hide_indicator: true) %>
-<%= sort_link(@p, :created_at, "created_at") %>
-<%= sort_link(@p, :reviews_rate, "評価") %>
+<%#= sort_link(@p, :name, "name",hide_indicator: true) %>
+<%#= sort_link(@p, :created_at, "created_at") %>
+<%#= sort_link(@p, :reviews_rate, "評価") %>
   <% if @results.length !=0 %>
       <% @results.each do |result| %>
   <div class="results-contents">
