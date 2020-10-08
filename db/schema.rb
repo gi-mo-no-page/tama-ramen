@@ -112,9 +112,11 @@ ActiveRecord::Schema.define(version: 2020_09_12_021417) do
   add_foreign_key "goods", "shops"
   add_foreign_key "goods", "users"
   add_foreign_key "menus", "shops"
+  add_foreign_key "menus", "users"
   add_foreign_key "reviews", "shops"
   add_foreign_key "reviews", "users"
   add_foreign_key "shops", "categories"
+  add_foreign_key "shops", "users"
   add_foreign_key "wents", "shops"
   add_foreign_key "wents", "users"
 end

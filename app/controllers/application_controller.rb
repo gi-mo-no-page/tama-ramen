@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
   end
 
   def search_shop
-    @p = Shop.ransack(params[:q])
+    @p = Shop.joins(:reviews).ransack(params[:q])
   end
 
 
@@ -22,6 +22,11 @@ class ApplicationController < ActionController::Base
   def set_category_column
     @category_name = Category.select('name').distinct
   end
+
+  def set_review_column
+    @review_rate = Review.select('rate').distinct
+  end
+
 
 
 
