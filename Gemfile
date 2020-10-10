@@ -34,7 +34,6 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'factory_bot_rails'
   gem 'faker'
-  gem "rspec_junit_formatter"
 end
 
 group :development do
@@ -83,3 +82,4 @@ end
 group :development do
   gem 'rubocop', require: false
 end
+gem "rspec_junit_formatter"
