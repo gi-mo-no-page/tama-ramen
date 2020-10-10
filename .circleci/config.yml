@@ -76,25 +76,11 @@ jobs:
           path: /tmp/test-results
           destination: test-results
 
-deploy:  
-  executor: default  
-    steps:  
-      - checkout  
-      - setup  
-      - add_ssh_keys:  
-          fingerprints:  
-            - 77:e7:db:6b:42:dd:51:c8:0d:b9:72:08:e9:1c:89:31  
-      - deploy:  
-          name: Deploy with Capistrano  
-          command: bundle exec cap production deploy  
-      
-      workflows:  
-        test_and_deploy:  
-          jobs:  
-            - test  
-            - deploy:  
-                requires:  
-                  - test  
-                filters:  
-                  branches:  
-                    only: master  
+          - add_ssh_keys:
+            fingerprints:
+              - "77:e7:db:6b:42:dd:51:c8:0d:b9:72:08:e9:1c:89:31"
+  
+        - deploy:
+            name: Capistrano deploy
+            command:
+              bundle exec cap production deploy
