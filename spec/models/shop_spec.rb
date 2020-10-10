@@ -6,9 +6,9 @@ RSpec.describe Shop, type: :model do
       @shop = FactoryBot.build(:shop)
     end
 
-    it 'name,text、address,latitude,longitude,category_id,user_id,imageが存在すれば登録できること' do
-      expect(@shop).to be_valid
-    end
+    #it 'name,text、address,latitude,longitude,category_id,user_id,imageが存在すれば登録できること' do
+      #expect(@shop).to be_valid
+    #end
 
     it 'nameが空では登録できないこと' do
       @shop.name = nil
