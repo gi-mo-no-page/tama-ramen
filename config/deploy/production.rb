@@ -62,7 +62,7 @@
 server '54.249.195.94', user: 'ec2-user', roles: %w{app db web}
 
 set :ssh_options, {  
-  keys: ["#{ENV.fetch('PRODUCTION_SSH_KEY')}"],  
+  keys: ['~/.ssh/taku1984.pem'],  
   forward_agent: true,  
   auth_methods: %w[publickey],  
   port: 33333,  
