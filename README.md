@@ -9,6 +9,9 @@
 - 店舗詳細ページから評価と口コミの投稿<br>
 - 行った店舗、お気に入り店舗の登録<br>
 - シェアしたい店舗の投稿<br>
+使用した技術
+HTML・CSS・Ruby・Ruby on Rails・JavaScript
+AWS(EC2、S3、Route53)・Docker・CircleCi(CI/CD)
 
 ## URL
  [こちらよりどうぞ](http://tama-ramen.com/)
@@ -141,7 +144,3 @@
 - belongs_to: shop
 - belongs_to: user
 
-## ローカルでの動作方法
-git clone 
-ruby 2.6.5
-Rails 6.0.3.3
