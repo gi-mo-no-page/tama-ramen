@@ -52,6 +52,5 @@ production:
   <<: *default
   database: tama_ramen_production
   username: root
-  password: taku1984
-  #password: <%= ENV['DATABASE_PASSWORD'] %>
+  password: <%= ENV['DATABASE_PASSWORD'] %>
   socket: /var/lib/mysql/mysql.sock
