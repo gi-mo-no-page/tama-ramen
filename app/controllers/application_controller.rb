@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
   end
 
   def search_shop
-    @p = Shop.joins(:reviews).ransack(params[:q])
+    @p = Shop.ransack(params[:q])
   end
 
 
