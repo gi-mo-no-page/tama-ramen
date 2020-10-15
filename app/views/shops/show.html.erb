@@ -110,22 +110,21 @@
   <div class="show-main-bottom">
     <div class="bottom-contents">
       <div class="tab-bar">
-        <div class="shop-items1">
-        <a class="tab_btn is-active-btn" href="#item1">TOP</a>
+        <div class="shop-items1 tab_btn is-active-btn" href="#item1">
+        TOP
         </div>
-        <div class="shop-items2">
-        <a class="tab_btn" href="#item2">地図</a>
-        
+        <div class="shop-items2 tab_btn" href="#item2">
+        地図
         </div>
-        <div class="shop-items3">
-        <a class="tab_btn" href="#item3">メニュー</a>
+        <div class="shop-items3 tab_btn" href="#item3">
+        メニュー
         </div>
-        <div class="shop-items4">
-        <a class="tab_btn" href="#item4">口コミ</a>
+        <div class="shop-items4 tab_btn" href="#item4">
+        口コミ
         </div>
       </div><!--tab-bar-->
 
-      <div class="tab_item is-active-item" id="item1">
+      <div class="tab_item is-active-item " id="item1">
         <%= image_tag @shop.image.variant(gravity: :center, resize:"600x400^", crop:"600x400+0+0").processed, class: 'show-shop-image' if @shop.image.attached? %>
         <div class="show-owner-comment"><i class="fas fa-address-card"></i>  お店投稿者：<%= @shop.user.nickname%>さん</div>
         <div class="show-shop-text border border-dark">
