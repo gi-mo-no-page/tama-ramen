@@ -43,9 +43,8 @@ class ShopsController < ApplicationController
   end
 
   def search
-    @results = @p.result.includes(:category).order(created_at: :desc).page(params[:page]).per(5)
-    @show_results = @p.result.includes(:category)
-
+    @results = @p.result.includes(:category,:reviews).order(created_at: :desc).page(params[:page]).per(5)
+    @show_results = @p.result.includes(:category,:reviews)
     
   end
 
