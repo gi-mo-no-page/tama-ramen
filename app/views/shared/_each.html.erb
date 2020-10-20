@@ -1,0 +1,111 @@
+<% if @results.length !=0 %>
+      <% @results.each do |result| %>
+  <div class="results-contents">
+    <div class="results-contents-left">
+
+        <div class="result-image">
+          <%= image_tag result.image.variant(gravity: :center, resize:"150x150^", crop:"150x150+0+0").processed, class: '#' if result.image.attached? %>
+        </div>
+    </div><!--left-->
+
+      <div class="results-contents-right">
+
+      <div class="right-top">
+        <div class="result-name">
+          <%= link_to result.name, shop_path(result.id), class: "result-name-link" %>
+        </div>
+        <div class="result-category-name">
+          ｶﾃｺﾞﾘｰ：<%= result.category.name %>
+        </div>
+
+  <% if user_signed_in? %>
+        <div>
+          <% if Good.find_by(user_id: current_user.id, shop_id: result.id) %>
+              <%= link_to(shop_path(result.id)) do %>
+              <i class="far fa-laugh-beam good-check">お気に入り</i>
+              <% end %>
+          <% else %>
+              <%= link_to(shop_path(result.id)) do %>
+                <i class="far fa-smile no-check">検討中</i>
+              <% end %>
+          <% end %>
+
+
+
+       <% if Went.find_by(user_id: current_user.id, shop_id: result.id) %>
+            <%= link_to(shop_path(result.id)) do %>
+              <i class="fas fa-user-check check">行った</i>
+            <% end %>
+      <% else %>
+            <%= link_to(shop_path(result.id)) do %>
+               <i class="fas fa-user-alt no-check">行ってない</i><br>
+            <% end %>
+      <% end %>
+    </div>
+
+
+
+  <% else %>
+    <h6>※ログインするとお店の管理や口コミができます※</h6>
+<% end %>
+
+
+
+      </div><!--right-top-->
+
+      <div class="right-bottom">
+
+        <div class="result-rate">
+          <% if result.reviews.present? %>
+            <div class="review-rate">
+            <%= result.reviews.average(:rate).floor(2) %>
+            </div>
+              <div id="star-<%= result.id %>"></div><!--star-->
+                <script>
+                $('#star-<%= result.id %>').raty({
+                  size: 36,
+                  starOff:  '<%= asset_path('star-off.png') %>',
+                  starOn : '<%= asset_path('star-on.png') %>',
+                  starHalf: '<%= asset_path('star-half.png') %>',
+                  readOnly: true,
+                  score: <%= result.reviews.average(:rate) %>,
+                });
+                </script>
+              <div><i class="far fa-comment-dots"></i> <%= result.reviews.count %></div>
+          <% else %>
+              <div class="review-rate">
+               0.0
+              </div>
+                <div id="star-<%= result.id %>"></div><!--star-->
+                <script>
+                $('#star-<%= result.id %>').raty({
+                  size: 36,
+                  starOff:  '<%= asset_path('star-off.png') %>',
+                  starOn : '<%= asset_path('star-on.png') %>',
+                  starHalf: '<%= asset_path('star-half.png') %>',
+                  readOnly: true,
+                  score: <%= 0.0 %>,
+                });
+                </script>
+                <span class="no-review-sentense">*口コミ未投稿*</span>
+          <% end %>
+        </div>
+
+        <div class="result-text">
+          <div class="shop-owner-comment"><i class="fas fa-address-card"></i>  投稿者：<%= result.user.nickname%>さん</div>
+          <%= result.text %>
+        </div>
+
+      </div><!--right-bottom-->
+
+      </div><!--right-->
+  </div><!--results-contents-->
+
+      <% end %><!--each-->
+    <% else %>
+    <div class="nothig">
+      該当する店舗がありません
+    </div>
+    <% end %><!---if-length-->
+
+</div><!--results-area-->

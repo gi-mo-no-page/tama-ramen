@@ -1,0 +1,47 @@
+<% if @shops.length != 0 %>
+            <% @shops.each do |shop| %>
+              <div>
+              <div class="shop-image">
+                <% if shop.image.attached? %>
+                <%= image_tag shop.image.variant(gravity: :center, resize:"120x120^", crop:"120x120+0+0").processed, class: '#' %> 
+                <% else %>
+                画像なし
+                <% end %> 
+              </div>
+              
+              <div class="shop-info">
+              <span><%= link_to shop.name, shop_path(shop.id) %></span><br>
+              <span>投稿者：<%= shop.user.nickname %>さん</span><br>
+              <span class="post-catrgory">ｶﾃｺﾞﾘｰ：<%= shop.category.name %></span><br>
+        <div>
+        <% if shop.reviews.present? %>
+            <span class="review-rate">
+            <%= shop.reviews.average(:rate).floor(2) %>
+            </span>
+              <div id="star-<%= shop.id %>"></div><!--star-->
+                <script>
+                $('#star-<%= shop.id %>').raty({
+                  size: 36,
+                  starOff:  '<%= asset_path('star-off.png') %>',
+                  starOn : '<%= asset_path('star-on.png') %>',
+                  starHalf: '<%= asset_path('star-half.png') %>',
+                  readOnly: true,
+                  score: <%= shop.reviews.average(:rate) %>,
+                });
+                </script> 
+          <% else %>
+                <span class="review-rate">
+                0.0
+                </span><br>
+                <%= image_tag asset_path('star-off.png'), class: '#' %>
+                <%= image_tag asset_path('star-off.png'), class: '#' %>
+                <%= image_tag asset_path('star-off.png'), class: '#' %>
+                <%= image_tag asset_path('star-off.png'), class: '#' %>
+                <%= image_tag asset_path('star-off.png'), class: '#' %><br>
+                <span class="no-review-sentense">*口コミ未投稿*</span>
+          <% end %>
+          </div>
+              </div>
+            </div>
+            <% end %>
+          <% end %>
