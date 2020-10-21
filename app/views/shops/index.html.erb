@@ -192,7 +192,13 @@
 </h6>
           
         <div class="new-posts">
-          <%= render "shared/shop-each" %>
+        <% if @shops.length != 0 %>
+          <% @shops.each do |shop| %>
+
+          <%= render partial: "shared/shop-each", locals: {shop: shop} %>
+
+            <% end %>
+          <% end %>
         </div><!--new-post-->
       </div><!--posts-->
 </div><!--main-->

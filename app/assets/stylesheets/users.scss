@@ -3,23 +3,26 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .user-main {
-  height: 700px;
+  // height: 100vh;
   width: 100%;
-  
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 .user-header {
-  height: 300px;
+  height: 260px;
   width: 100%;
+  background-color: rgb(250, 247, 230);
 }
-.user-header-area {
-  position: relative;
+.user-header-area {  
+   position: relative;
 }
 
 .user-contents-left {
   position: absolute;
-  top: 80px;
-  left: 650px;
+  top: 1px;
+  left: 550px;
   width: 30%;
   height: 180px;
   border: lightgray solid 2px;
@@ -28,8 +31,10 @@
 
 
 .user-avatar {
-  margin-left: 360px;
-  margin-bottom: 10px;
+  margin-left: 300px;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 50px;
 }
 
 #image-content {
@@ -39,33 +44,33 @@
 
 .user-nickname {
   font-size: 20px;
-  margin-left: 360px;
+  margin-left: 300px;
   margin-bottom: 18px;
-
-
-}
-.user-edit {
-  display: flex;
-  justify-content: flex-end;
-  font-size: 16px;
-  padding: 16px 48px;
-  margin-top: 16px;
 }
 .contents-item1 {
-  margin-right: 24px;
+  margin-right: 240px;
 }
 
+
 .user-contents {
-  height: 400px;
-  background-color: rgb(250, 247, 230);
+  height: 70vh;
   display: flexbox;
 }
 
+.user-tab {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .user-post-title {
   color: lightsalmon;
-  font-size: 32px;
-  margin-left: 100px;
-  margin-bottom: 40px;
+  font-size: 20px;
+  margin-left: 10px;
+  margin-bottom: 20px;
+  // background-color: lightgoldenrodyellow;
+  padding: 16px;
+  cursor: pointer;
+
 
 }
 
@@ -73,4 +78,8 @@
   color: red;
   font-weight: bold;
   font-size: 20px;
+}
+
+.footer {
+  margin-top: auto;
 }

@@ -5,20 +5,6 @@
    <div class="user-header-area ">
 
     <div class="user-edit">
-
-        <div class="contents-item1">
-          <div>クチコミ数 ：<%= @reviews.count %></div>
-          <div><%= link_to  "お気に入り", shop_goods_path(@user) %>
-        ：<%= @goods.count %></div>
-        <div><%= link_to  "行ったお店", shop_wents_path(@user) %>
-        ：<%= @wents.count %></div>
-        </div> 
-
-      <div class="user-contents-list">
-      <div><%= link_to "アカウントの編集", edit_user_path(current_user.id) %></div>
-      <div><%= link_to  "TOPへ", root_path %></div>
-      </div> 
-
     </div>
 
 
@@ -29,7 +15,19 @@
       <% else %>
         <%= image_tag(asset_path('noimage.png'), :size => "150x150") %>
       <% end %>
+
+        <div class="contents-item1">
+          <div class="user-info">  口コミ数　：<%= @reviews.count %></div>
+          <div class="user-info">お気に入り：<%= @goods.count %></div>
+        <div class="user-info">行ったお店：<%= @wents.count %></div>
+        <div class="user-info"><%= link_to "アカウント編集", edit_user_path(current_user.id) %></div>
+        <div class="user-info"><%= link_to  "TOPへ", root_path %></div>
+        </div>
+
+
     </div>
+
+    
 
   <div class="user-nickname">
      <%= "#{current_user.nickname}さん" %>
@@ -39,7 +37,7 @@
       <% if @user.text.present? %>
       <%= @user.text %>
       <% end %>
-      
+
     </div>
 
    </div><!--user-header-area-->
@@ -50,56 +48,110 @@
  <div class="user-contents"> 
 
   <div class="user-contents-right">
-     <div class="user-post-title"><i class="fas fa-quidditch">
-     投稿したお店</i></div>
+    <div class="user-tab">
+     <div class="user-post-title tab_btn is-active-btn" href="#item1"><i class="fas fa-quidditch"></i>
+     投稿したお店</div>
+     <div class="user-post-title tab_btn" href="#item2"><i class="far fa-laugh-beam good-check">お気に入り</i></div>
+     <div class="user-post-title tab_btn" href="#item3"><i class="fas fa-user-check check"></i>行ったお店</div>
+    <div class="user-post-title tab_btn" href="#item4"><i class="fas fa-edit"></i>アカウント編集</div>
+    </div>
 
-      <div class="new-posts"> 
-       <% if @shops.length != 0 %>
-        <% @shops.each do |shop| %>
-        <div>
-          <div class="shop-image">
-          <%= image_tag shop.image.variant(gravity: :center, resize:"100x100^", crop:"100x100+0+0").processed, class: '#' if shop.image.attached? %>
-          </div>
-          <div class="shop-info">
-          <span><%= link_to shop.name, shop_path(shop.id) %></span><br>
-          </div>
-          <div class="shop-info">
-          <span>ｶﾃｺﾞﾘｰ：<%= shop.category.name %></span><br>
-          </div>
-          <% if shop.reviews.present? %>
-            <span class="review-rate">
-            <%= shop.reviews.average(:rate).floor(2) %>
-            </span>
-              <div id="star-<%= shop.id %>"></div><!--star-->
-                <script>
-                $('#star-<%= shop.id %>').raty({
-                  size: 36,
-                  starOff:  '<%= asset_path('star-off.png') %>',
-                  starOn : '<%= asset_path('star-on.png') %>',
-                  starHalf: '<%= asset_path('star-half.png') %>',
-                  readOnly: true,
-                  score: <%= shop.reviews.average(:rate) %>,
-                });
-                </script> 
-          <% else %>
-          <span class="review-rate">
-          0.0
-          </span><br>
-          <%= image_tag asset_path('star-off.png'), class: '#' %>
-          <%= image_tag asset_path('star-off.png'), class: '#' %>
-          <%= image_tag asset_path('star-off.png'), class: '#' %>
-          <%= image_tag asset_path('star-off.png'), class: '#' %>
-          <%= image_tag asset_path('star-off.png'), class: '#' %><br>
-          *口コミ未投稿*<br>
+    <div class="tab_item is-active-item " id="item1">
+        <% if @shops.length != 0 %>
+          <% @shops.each do |shop| %>
+        <%= render partial: "shared/each", locals: {result: shop} %>
+            <% end %>
+        <% else %>
+            <div class="nothig">
+              投稿した店舗がありません
+            </div>
           <% end %>
+    </div>
 
+    <div class="tab_item" id="item2">
+     <% if @goods.length !=0 %>
+      <% @goods.each do |good| %>
+         <%= render partial: "shared/each", locals: {result: good.shop} %>
+      <% end %><!--each-->
+    <% else %>
+    <div class="nothig">
+      お気に入りがありません
+    </div>
+    <% end %><!---if-length-->
+    </div>
 
+    <div class="tab_item" id="item3">
+        <% if @wents.length !=0 %>
+      <% @wents.each do |went| %>
+        <%= render partial: "shared/each", locals: {result: went.shop} %>
+      <% end %><!--each-->
+    <% else %>
+    <div class="nothig">
+      行ったお店がありません
+    </div>
+    <% end %><!---if-length-->
+    </div>
 
+    <div class="tab_item" id="item4">
+    <div class='account-page' id='account-page'>
+  <div class='account-page__inner clearfix'>
+    <div class='account-page__inner--left account-page__header'>
+      <h3>アカウント編集</h3>
+      <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'btn'%>
+    </div>
+    <div class='account-page__inner--right user-form'>
+      <%= form_with model: current_user, local: true do |f|%>
+      <div class='field'>
+        <div class='field-label'>
+          <%= f.label :写真 %>
         </div>
-        <% end %>
-      <% end %>
+        <div class='field-input'>
+          <%= f.file_field :avatar, id:"image" %>
+          <div id="image-list"></div>
+        </div>
       </div>
+        <div class='field'>
+          <div class='field-label'>
+            <%= f.label :nickname%>
+          </div>
+          <div class='field-input'>
+            <%= f.text_field :nickname, autofocus: true%>
+          </div>
+        </div>
+        <div class='field'>
+          <div class='field-label'>
+            <%= f.label :email%>
+          </div>
+          <div class='field-input'>
+            <%= f.email_field :email%>
+          </div>
+        </div>
+
+        <div class='field'>
+          <div class='field-label'>
+            <%= f.label :自己紹介%>
+          </div>
+          <div class='field-input'>
+            <%= f.text_field :text %>
+          </div>
+        </div>
+
+        <div class='actions'>
+          <%= f.submit "更新", class: 'btn'%>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+    </div>
+
+
+
+
  </div><!--user-contents-right-->
   </div><!--user-contents-->
+<%#= render "shared/footer" %>
 </div><!--user-main-->
-<%= render "shared/footer" %>
+
+

@@ -1,0 +1,40 @@
+        <div>
+          <div class="shop-image">
+          <%= image_tag shop.image.variant(gravity: :center, resize:"100x100^", crop:"100x100+0+0").processed, class: '#' if shop.image.attached? %>
+          </div>
+          <div class="shop-info">
+          <span><%= link_to shop.name, shop_path(shop.id) %></span><br>
+          </div>
+          <div class="shop-info">
+          <span>ｶﾃｺﾞﾘｰ：<%= shop.category.name %></span><br>
+          </div>
+          <% if shop.reviews.present? %>
+            <span class="review-rate">
+            <%= shop.reviews.average(:rate).floor(2) %>
+            </span>
+              <div id="star-<%= shop.id %>"></div><!--star-->
+                <script>
+                $('#star-<%= shop.id %>').raty({
+                  size: 36,
+                  starOff:  '<%= asset_path('star-off.png') %>',
+                  starOn : '<%= asset_path('star-on.png') %>',
+                  starHalf: '<%= asset_path('star-half.png') %>',
+                  readOnly: true,
+                  score: <%= shop.reviews.average(:rate) %>,
+                });
+                </script> 
+          <% else %>
+          <span class="review-rate">
+          0.0
+          </span><br>
+          <%= image_tag asset_path('star-off.png'), class: '#' %>
+          <%= image_tag asset_path('star-off.png'), class: '#' %>
+          <%= image_tag asset_path('star-off.png'), class: '#' %>
+          <%= image_tag asset_path('star-off.png'), class: '#' %>
+          <%= image_tag asset_path('star-off.png'), class: '#' %><br>
+          *口コミ未投稿*<br>
+          <% end %>
+
+
+
+        </div>
