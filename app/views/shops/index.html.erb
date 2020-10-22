@@ -99,14 +99,9 @@
           北多摩エリア
         </div>
         <ul class="area-section">
-        <li class="link"><%= link_to  "西東京市", "/shops/search?q%5Baddress_cont%5D=西東京市" %></li>
-        <li class="link"><%= link_to  "東久留米市", "/shops/search?q%5Baddress_cont%5D=東久留米市" %></li>
-        <li class="link"><%= link_to  "清瀬市", "/shops/search?q%5Baddress_cont%5D=清瀬市" %></li>
-        <li class="link"><%= link_to  "小平市", "/shops/search?q%5Baddress_cont%5D=小平市" %></li>
-        <li class="link"><%= link_to  "東村山市", "/shops/search?q%5Baddress_cont%5D=東村山市" %></li>
-        <li class="link"><%= link_to  "東大和市", "/shops/search?q%5Baddress_cont%5D=東大和市" %></li>
-        <li class="link"><%= link_to  "武蔵村山市", "/shops/search?q%5Baddress_cont%5D=武蔵村山市" %></li>
-
+        <% @north_tama_areas.each do |area| %>
+          <li class="link"><%= link_to  area, "/shops/search?q%5Baddress_cont%5D=#{area}" %></li>
+        <% end %>
         </ul>
       </div><!--north-->
 
@@ -117,12 +112,9 @@
           南多摩エリア
         </div>
         <ul class="area-section">
-        <li class="link"><%= link_to  "多摩市", "/shops/search?q%5Baddress_cont%5D=多摩市" %></li>
-        <li class="link"><%= link_to  "町田市", "/shops/search?q%5Baddress_cont%5D=町田市" %></li>
-        <li class="link"><%= link_to  "稲城市", "/shops/search?q%5Baddress_cont%5D=稲城市" %></li>
-        <li class="link"><%= link_to  "日野市", "/shops/search?q%5Baddress_cont%5D=日野市" %></li>
-        <li class="link"><%= link_to  "八王子", "/shops/search?q%5Baddress_cont%5D=八王子" %></li>
-        <li class="link"><%= link_to  "府中市", "/shops/search?q%5Baddress_cont%5D=府中市" %></li>
+        <% @south_tama_areas.each do |area| %>
+          <li class="link"><%= link_to  area, "/shops/search?q%5Baddress_cont%5D=#{area}" %></li>
+        <% end %>
         </ul>
       </div><!--north-->
     </div><!--north-south-->
@@ -134,13 +126,9 @@
           西多摩エリア
         </div>
         <ul class="area-section">
-        <li class="link"><%= link_to  "昭島市", "/shops/search?q%5Baddress_cont%5D=昭島市" %></li>
-        <li class="link"><%= link_to  "立川市", "/shops/search?q%5Baddress_cont%5D=立川市" %></li>
-        <li class="link"><%= link_to  "福生市", "/shops/search?q%5Baddress_cont%5D=福生市" %></li>
-        <li class="link"><%= link_to  "羽村市", "/shops/search?q%5Baddress_cont%5D=羽村市" %></li>
-        <li class="link"><%= link_to  "青梅市", "/shops/search?q%5Baddress_cont%5D=青梅市" %></li>
-        <li class="link"><%= link_to  "あきる野市", "/shops/search?q%5Baddress_cont%5D=あきる野市" %></li>
-        <li class="link"><%= link_to  "瑞穂町", "/shops/search?q%5Baddress_cont%5D=瑞穂町" %></li>
+        <% @west_tama_areas.each do |area| %>
+          <li class="link"><%= link_to  area, "/shops/search?q%5Baddress_cont%5D=#{area}" %></li>
+        <% end %>
         </ul>
       </div><!--north-->
 
@@ -151,13 +139,9 @@
           東多摩エリア
         </div>
         <ul class="area-section">
-        <li class="link"><%= link_to  "小金井市", "/shops/search?q%5Baddress_cont%5D=小金井市" %></li>
-        <li class="link"><%= link_to  "国立市", "/shops/search?q%5Baddress_cont%5D=国立市" %></li>
-        <li class="link"><%= link_to  "国分寺市", "/shops/search?q%5Baddress_cont%5D=国分寺市" %></li>
-        <li class="link"><%= link_to  "三鷹市", "/shops/search?q%5Baddress_cont%5D=三鷹市" %></li>
-        <li class="link"><%= link_to  "武蔵野市", "/shops/search?q%5Baddress_cont%5D=武蔵野市" %></li>
-        <li class="link"><%= link_to  "調布市", "/shops/search?q%5Baddress_cont%5D=調布市" %></li>
-        <li class="link"><%= link_to  "狛江市", "/shops/search?q%5Baddress_cont%5D=狛江市" %></li>
+        <% @east_tama_areas.each do |area| %>
+          <li class="link"><%= link_to  area, "/shops/search?q%5Baddress_cont%5D=#{area}" %></li>
+        <% end %>
         </ul>
       </div><!--north-->
     </div><!--north-south-->
@@ -172,16 +156,9 @@
                 カテゴリー
               </div>
             <ul class="area-section">
-            <li class="link"><%= link_to  "しょうゆ", "/shops/search?q%5Bcategory_name_eq%5D=しょうゆ" %></li>
-            <li class="link"><%= link_to  "みそ", "/shops/search?q%5Bcategory_name_eq%5D=みそ" %></li>
-            <li class="link"><%= link_to  "とんこつ", "/shops/search?q%5Bcategory_name_eq%5D=とんこつ" %></li>
-            <li class="link"><%= link_to  "しお", "/shops/search?q%5Bcategory_name_eq%5D=しお" %></li>
-            <li class="link"><%= link_to  "つけ麺", "/shops/search?q%5Bcategory_name_eq%5D=つけ麺" %></li>
-            <li class="link"><%= link_to  "担々麺", "/shops/search?q%5Bcategory_name_eq%5D=担々麺" %></li>
-            <li class="link"><%= link_to  "油そば", "/shops/search?q%5Bcategory_name_eq%5D=油そば" %></li>
-            <li class="link"><%= link_to  "家系", "/shops/search?q%5Bcategory_name_eq%5D=家系" %></li>
-            <li class="link"><%= link_to  "二郎系", "/shops/search?q%5Bcategory_name_eq%5D=二郎系" %></li>
-            <li class="link"><%= link_to  "その他", "/shops/search?q%5Bcategory_name_eq%5D=その他" %></li>
+             <% @categories.each do |category| %>
+              <li class="link"><%= link_to  category.name, "/shops/search?q%5Bcategory_name_eq%5D=#{category.name}" %></li>
+             <% end %>
             </ul>
           </div><!--north-->
         </div><!--north-south-->
@@ -189,7 +166,7 @@
 
       <div class="posts">
         <h6 class="list-title">新しい投稿から探す <%= link_to  "全てのお店を見る", "/shops/search?q%5Baddress_cont%5D=" ,class: "area-title"%>
-</h6>
+        </h6>
           
         <div class="new-posts">
         <% if @shops.length != 0 %>

@@ -18,4 +18,7 @@ class Shop < ApplicationRecord
     validates :user_id
   end
 
+  def set_areas
+    @north_tama_areas = ["西東京市","東久留米市","清瀬市","東村山市","小平市","東大和市","武蔵村山市"]
+  end
 end
