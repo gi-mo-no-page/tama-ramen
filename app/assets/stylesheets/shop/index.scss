@@ -37,8 +37,6 @@ ul {
   // background-color:rgb(253, 251, 251) ;
   // border: lightgrey solid 2px;
   // border-top: lightgrey solid 1px;
-
-
 }
 
 .result > li {
@@ -111,12 +109,6 @@ ul {
   margin:10px 5px;
 }
 
-
-
-
-
-
-
 .title {
   font-size: 100px;
   font-family: monospace;
@@ -127,7 +119,8 @@ ul {
   color: #ffffff;
   margin-left: 40px;
   font-size: 20px;
-
+  font-weight: normal;
+  font-family: fantasy;
 }
 
 .header {
@@ -138,9 +131,28 @@ ul {
   background-position: center;
 }
 
+.header-user-info {
+  display: flex;
+  justify-content: flex-end;
+  color: #ffffff;
+  padding-top:30px;
+  padding-right:16px;
+}
+.header-user-info-list {
+  margin-left: 10px;
+  color: #ffffff;
+}
+.header-user-info-list:hover {
+  color: #ffffff;
+  text-decoration: none;
+  opacity: 0.8;
+}
+
 .header-list {
   height: 430px;
   width: 100%;
+  display: flex;
+  justify-content: space-between;
 }
 
 .search-form {

@@ -1,8 +1,22 @@
 <div class="header">
   <div class="header-list">
-    <div class="title">TAMA-RAMEN</div>
+    <div class="title">
+    TAMA-RAMEN
     <div class="sub-title">東京・多摩地区限定ラーメン</div>
+    </div>
+    <ul class="header-user-info">
+      <% if user_signed_in? %>
+        <li><%= link_to "マイページ", user_path(current_user.id), class: "header-user-info-list" %></li>
+        <li><%= link_to "行ったお店", shop_wents_path(current_user.id), class: "header-user-info-list" %></li>
+        <li><%= link_to "お気に入り", shop_goods_path(current_user.id), class: "header-user-info-list" %></li>
+        <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "header-user-info-list" %></li>
+      <% else %>
+        <li><%= link_to  "ログイン", new_user_session_path, class: "header-user-info-list" %></li>
+        <li><%= link_to "新規登録", new_user_registration_path, class: "header-user-info-list"%></li>
+      <% end %>
+    </ul>
  </div><!--header-list-->
+    
 
 <div class="search-form">
   <div class="search-input">
