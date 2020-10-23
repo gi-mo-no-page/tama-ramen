@@ -72,7 +72,10 @@ ul {
   text-align: center;
   font-size: 18px;
   color: #000;
-
+}
+.usernickname-link:hover {
+  color: lightcoral;
+  text-decoration: none;
 }
 .new-shop-link {
   text-align: center;
@@ -99,6 +102,11 @@ ul {
   margin: 50px 0;
 }
 
+.sign-in:hover, .login:hover, .logout:hover,.new-shop:hover {
+  text-decoration: none;
+  color: #ffffff;
+  opacity: 0.8;
+}
 
 .no-login {
   margin: 30px 0;
@@ -309,8 +317,10 @@ ul {
   padding:15px 20px;
   margin-left: 5px;
 }
-.link:hover {
-  opacity: 0.5;
+.links:hover {
+  text-decoration: none;
+  color: lightcoral;
+  opacity: 0.6;
 }
 
 .new-posts {
@@ -330,6 +340,10 @@ ul {
   height: 130px;
 }
 
+.post-name:hover {
+  text-decoration: none;
+  color: lightcoral;
+}
 //<mainここまで>
 
 .footer-index {

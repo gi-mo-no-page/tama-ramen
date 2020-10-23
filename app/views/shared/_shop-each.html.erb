@@ -8,7 +8,7 @@
               </div>
               
               <div class="shop-info">
-              <span><%= link_to shop.name, shop_path(shop.id) %></span><br>
+              <span><%= link_to shop.name, shop_path(shop.id), class:"post-name"%></span><br>
               <span>投稿者：<%= shop.user.nickname %>さん</span><br>
               <span class="post-catrgory">ｶﾃｺﾞﾘｰ：<%= shop.category.name %></span><br>
         <div>
