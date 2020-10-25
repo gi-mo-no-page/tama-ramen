@@ -6,9 +6,9 @@ RSpec.describe Menu, type: :model do
       @menu = FactoryBot.build(:menu)
     end
 
-    #it 'name,price,user_id,shop_idが存在すれば登録できること' do
-      #expect(@menu).to be_valid
-    #end
+    # it 'name,price,user_id,shop_idが存在すれば登録できること' do
+    # expect(@menu).to be_valid
+    # end
 
     it 'nameが空では登録できないこと' do
       @menu.name = nil

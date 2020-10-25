@@ -6,9 +6,9 @@ RSpec.describe Review, type: :model do
       @review = FactoryBot.build(:review)
     end
 
-    #it 'title,text,rate,user_id,shop_idが存在すれば登録できること' do
-     #expect(@review).to be_valid
-    #end
+    # it 'title,text,rate,user_id,shop_idが存在すれば登録できること' do
+    # expect(@review).to be_valid
+    # end
 
     it 'titleが空では登録できないこと' do
       @review.title = nil

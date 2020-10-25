@@ -6,9 +6,9 @@ RSpec.describe Category, type: :model do
       @category = FactoryBot.build(:category)
     end
 
-    #it 'nameが存在すれば登録できること' do
-      #expect(@catrgory).to be_valid
-    #end
+    # it 'nameが存在すれば登録できること' do
+    # expect(@catrgory).to be_valid
+    # end
 
     it 'nameが空では登録できないこと' do
       @category.name = nil

@@ -14,7 +14,6 @@ class ApplicationController < ActionController::Base
     @p = Shop.ransack(params[:q])
   end
 
-
   def set_shop_column
     @shop_address = Shop.select('address').distinct
   end
@@ -26,8 +25,4 @@ class ApplicationController < ActionController::Base
   def set_review_column
     @review_rate = Review.select('rate').distinct
   end
-
-
-
-
 end
