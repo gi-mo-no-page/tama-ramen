@@ -16,13 +16,6 @@ ul {
   position: relative;
 }
 
-// .result-list-area {
-//   width: 87.5%;
-//   height: 9vh;
-//   background-color:rgb(253, 251, 251) ;
-//   border: lightgrey solid 2px;
-//   border-top: lightgrey solid 1px;
-// }
 .result-list-area {
   margin-left: 140px;
 }
@@ -31,12 +24,8 @@ ul {
   display: flex;
   color:rgb(99, 96, 96);
   margin-right: 6px;
-  // width: 87.5%;
   width: 100%;
   height: 9vh;
-  // background-color:rgb(253, 251, 251) ;
-  // border: lightgrey solid 2px;
-  // border-top: lightgrey solid 1px;
 }
 
 .result > li {
@@ -280,7 +269,6 @@ ul {
 
 .posts {
   width: 100%;
-  // background-color:yellow;
   height: 350px;
 
 }
